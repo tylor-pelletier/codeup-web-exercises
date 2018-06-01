@@ -59,27 +59,28 @@ a:active {
     text-align: center;
 }
 
-.larger {
-    font-size: 130%;
-}
-
-.list1 {
+.section1 {
     list-style-image: url("../../../codeup/img/seven_lions_logo.png");
     display: inline-block;
-    text-align: left;
+    margin: 0px 30px;
 }
 
-.list2 {
+.section2 {
     display: inline-block;
-    text-align: left;
+    margin: 0px 30px;
 }
 
-.list3 {
+.section3 {
     list-style-type: square;
     display: inline-block;
+    margin: 0px 30px;
+}
+
+.list {
     text-align: left;
 }
 
 #entire {
     text-align: center;
+    font-size: 180%;
 }
