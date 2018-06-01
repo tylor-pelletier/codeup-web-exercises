@@ -7,37 +7,47 @@
     <body>
 
         <form method="post" action="https://webhook.site/c4b9d7cd-a9c5-415d-99dd-485ddfa757fc">
+
             <div>
-                <label for="username">Username:</label>
-                <input id="username" type="text" name="username" placeholder="example@email.com">
-                <br>
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email" placeholder="example@mail.com">
+                <br><br>
                 <label for="password">Password:</label>
-                <input id="password" type="password" name="password" placeholder="enter password here">
+                <input type="password" name="password" id="password" placeholder="create password here">
+                <br><br>
+                <label for="sign_up">Subscribe to our email list</label>
+                <input type="checkbox" name="sign_up" id="sign_up" checked>
             </div>
 
             <div>
-                <h3>Bio:</h3>
-
-                <textarea name="bio" id="bio_textarea" cols="50" rows="10"></textarea>
+                <h4>Bio:</h4>
+                <textarea name="bio" id="bio_textarea" placeholder="Tell me about yourself" cols="50" rows="10"></textarea>
             </div>
 
             <div>
                 <h4>How did you hear about us?</h4>
-                <input type="radio" name="found_us_through" value="billboard">Billboard<br>
-                <input type="radio" name="found_us_through" value="radio advertisement">Radio Advertisement<br>
-                <input type="radio" name="found_us_through" value="internet advertisement">Internet Advertisement<br>
-                <input type="radio" name="found_us_through" value="other">Other<br>
+                <input type="radio" name="found_us_through" id="billboard_answer" value="billboard">
+                <label for="billboard_answer">Billboard</label><br>
+                <input type="radio" name="found_us_through" id="radio_answer" value="radio">
+                <label for="radio_answer">Radio Advertisement</label><br>
+                <input type="radio" name="found_us_through" id="internet_answer" value="internet">
+                <label for="internet_answer">Internet Advertisement</label><br>
+                <input type="radio" name="found_us_through" id="other_answer" value="other">
+                <label for="other_answer">Other</label><br>
 
                 <h4>What web browser are you using?</h4>
                 <select name="web_browser" id="web_browser_drop_menue">
+                    <option value="blank">Select one</option>
                     <option value="chrome">Google Chrome</option>
                     <option value="safari">Safari</option>
-                    <option value="explorer">Internet Explorer</option>
+                    <option value="explorer">Internet Explorer (Edge)</option>
                     <option value="firefox">Firefox</option>
                 </select>
                 <br><br>
-                <button type="submit">Submit</button>
+                <button type="submit">Register</button>
             </div>
+
+        </form>
 
     </body>
 </html>
