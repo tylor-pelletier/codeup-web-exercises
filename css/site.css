@@ -1,4 +1,85 @@
-.fancy-header {
-    color: purple;
+body {
+    background-image: url(../../../codeup/img/blue_ice.jpg);
+    background-repeat: round;
+    color: #ffffff;
+    font-family: "Sunflower", sans-serif;
+}
+
+/*body {*/
+/*background: #384726;*/
+/*}*/
+
+h2 {
+    color: #00f0a0;
     text-decoration: underline;
+}
+
+th {
+    text-decoration: underline;
+}
+
+a:link {
+    color: #00f0a0;
+}
+
+a:visited {
+    color: #00f0a0;
+}
+
+a:hover {
+    color: #f000ff;
+    font-size: 150%;
+}
+
+a:active {
+    color: #ffffff;
+}
+
+.teal {
+    color: #00f0a0;
+}
+
+.pink {
+    color: #f000ff;
+}
+
+.fancy-header {
+    color: #f000ff;
+    text-decoration: underline;
+    text-align: center;
+}
+
+.our_product {
+    table-layout: fixed;
+    width: 100%;
+    text-align: center;
+}
+
+.our_prduct_header {
+    text-align: center;
+}
+
+.larger {
+    font-size: 130%;
+}
+
+.list1 {
+    list-style-image: url("../../../codeup/img/seven_lions_logo.png");
+    display: inline-block;
+    text-align: left;
+}
+
+.list2 {
+    display: inline-block;
+    text-align: left;
+}
+
+.list3 {
+    list-style-type: square;
+    display: inline-block;
+    text-align: left;
+}
+
+#entire {
+    text-align: center;
 }
