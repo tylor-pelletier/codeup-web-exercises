@@ -1,0 +1,142 @@
+h1 {
+    text-align: center;
+}
+
+div.alert-info a:link {
+    color: #000;
+    text-decoration: none;
+}
+
+div.alert-info a:visited {
+    color: #000;
+    text-decoration: none;
+}
+
+ul.nav-links a:link {
+    color: blue;
+}
+
+ul.nav-links a:visited {
+    color: blue;
+}
+
+ul.nav-links li {
+    padding: 1em;
+    margin: 1em;
+    background-color: lightgray;
+}
+
+footer>p {
+    float: left;
+}
+
+div#social-media-links li img {
+    height: 2em;
+    width: 2em;
+    float: right;
+    margin: 0em 5px;
+}
+
+div#social-media-links li {
+    list-style-type: none;
+}
+
+.alert-info {
+    text-align: center;
+    margin: 1em;
+    padding: 1.5em;
+    border: 2px solid lightgray;
+    background-color: #b8f6ff;
+}
+
+.nav-links {
+    list-style-type: none;
+    text-align: center;
+    padding: 0em;
+}
+
+.header-img {
+    text-align: center;
+}
+
+.sub-section {
+    font-style: italic;
+    margin: 50px 0px 100px 0px;
+}
+
+#desktop_img {
+    display: none;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media screen and (min-width:768px) {
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media screen and (min-width:992px) {
+
+    body {
+        position: relative;
+    }
+
+    h1 {
+        text-align: left;
+        display: inline-block;
+        padding: 50px 60px;
+        width: calc(50% -120px);
+        margin: 0px;
+        float: left;
+    }
+
+    h2 {
+        margin: 30px 0px;
+    }
+
+    ul.nav-links li {
+        display: inline-block;
+        background-color: transparent;
+        padding: 50px 20px;
+        margin: 0px;
+    }
+
+    nav {
+        padding: 0px 40px;
+        width: calc(50% - 60px);
+        float: right;
+    }
+
+    .hidden-on-desktop {
+        display: none;
+    }
+
+    .nav-links {
+        text-align: right;
+    }
+
+    #desktop_img {
+        display: inline-block;
+        clear: both;
+    }
+    
+    #mobile_img {
+        display: none;
+    }
+
+    .main   {
+        float: left;
+        padding: 0px 20px 300px 60px;
+        width: calc(65% - 80px);
+    }
+
+    .sub-section {
+        padding: 0px 60px 300px 0px;
+        float: left;
+        width: calc(35% - 60px);
+        margin: 0px;
+    }
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media screen and (min-width:1200px) {
+}

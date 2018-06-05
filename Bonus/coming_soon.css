@@ -1,0 +1,51 @@
+body {
+    background-image: url("../../../codeup/img/forest_bonus.jpeg");
+    background-size: cover;
+    font-family: Raleway, sans-serif;
+    font-weight: lighter;
+    color: #fff;
+}
+
+header {
+    font-size: x-large;
+    padding: 20px;
+}
+
+hr {
+    width: 180px;
+}
+
+p {
+    font-size: xx-large;
+}
+
+footer{
+    position: absolute;
+    left: 25px;
+    bottom: 25px;
+    font-size: 95%;
+}
+
+a.link:link {
+    color: #fff;
+}
+
+a.link:visited {
+    color: #fff;
+}
+
+.center_body {
+    text-align: center;
+    margin: auto;
+}
+
+.top_text {
+    font-size: 390%;
+    padding: 280px 0px 15px 0px;
+}
+
+.bottom_text {
+    font-size: large;
+    padding: 15px 0px 0px 0px;
+}
+

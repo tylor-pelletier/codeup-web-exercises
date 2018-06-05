@@ -1,0 +1,141 @@
+body {
+    background-image: url(../../../codeup/img/grey_background.jpg);
+    background-size: contain;
+    color: #ffffff;
+    font-family: "Sunflower", sans-serif;
+}
+
+/*body {*/
+/*background: #384726;*/
+/*}*/
+
+h2 {
+    color: #00f0a0;
+    text-decoration: underline;
+}
+
+th {
+    text-decoration: underline;
+}
+
+a.package_link:link {
+    color: #ffffff;
+}
+
+a.package_link:visited {
+    color: #ffffff;
+}
+
+a.package_link:hover {
+    color: #a0a0fa;
+}
+
+a.package_link:active {
+    color: #00f0a0;
+}
+
+a.link1:link {
+    color: #a0a0fa;
+}
+
+a.link1:visited {
+    color: #a0a0fa;
+}
+
+a.link1:hover {
+    color: #00f0a0;
+    font-size: 150%;
+}
+
+a.link1:active {
+    color: #ffffff;
+}
+
+.parallax {
+    /* The image used */
+    background-image: url("../../../codeup/img/snow_mountains.jpg");
+
+    /* Set a specific height */
+    min-height: 600px;
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.paragraph {
+    height:300px;
+    font-size:36px
+}
+
+.teal {
+    color: #00f0a0;
+}
+
+.purple {
+    color: #a0a0fa;
+}
+
+.fancy-header {
+    color: #a0a0fa;
+    text-decoration: underline;
+    text-align: center;
+}
+
+.our_product {
+    table-layout: fixed;
+    width: 100%;
+    text-align: center;
+}
+
+.our_prduct_header {
+    text-align: center;
+}
+
+.section1 {
+    list-style-image: url("../../../codeup/img/seven_lions_logo.png");
+    display: inline-block;
+    margin: 0px 30px;
+}
+
+.section2 {
+    display: inline-block;
+    margin: 0px 30px;
+}
+
+.section3 {
+    list-style-type: square;
+    display: inline-block;
+    margin: 0px 30px;
+}
+
+.list {
+    text-align: left;
+}
+
+#entire {
+    text-align: center;
+    font-size: 180%;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: black;
+    border: 3px solid #a0a0fa;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
