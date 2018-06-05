@@ -83,8 +83,8 @@ div#social-media-links li {
     h1 {
         text-align: left;
         display: inline-block;
-        padding: 50px 60px;
-        width: calc(50% -120px);
+        padding: 50px 0px;
+        width: 50%;
         margin: 0px;
         float: left;
     }
@@ -93,17 +93,16 @@ div#social-media-links li {
         margin: 30px 0px;
     }
 
+    nav {
+        width: 50%;
+        float: right;
+    }
+
     ul.nav-links li {
         display: inline-block;
         background-color: transparent;
-        padding: 50px 20px;
+        padding: 50px 0px 50px 40px;
         margin: 0px;
-    }
-
-    nav {
-        padding: 0px 40px;
-        width: calc(50% - 60px);
-        float: right;
     }
 
     .hidden-on-desktop {
@@ -114,26 +113,30 @@ div#social-media-links li {
         text-align: right;
     }
 
-    #desktop_img {
-        display: inline-block;
-        clear: both;
-    }
-    
-    #mobile_img {
-        display: none;
+    .header-img img {
+        width: 100%;
     }
 
     .main   {
         float: left;
-        padding: 0px 20px 300px 60px;
-        width: calc(65% - 80px);
+        padding: 0px 20px 300px 0px;
+        width: calc(65% - 20px);
     }
 
     .sub-section {
-        padding: 0px 60px 300px 0px;
+        padding: 0px 0px 300px 0px;
         float: left;
-        width: calc(35% - 60px);
+        width: calc(35% - 0px);
         margin: 0px;
+    }
+
+    #desktop_img {
+    display: inline-block;
+    clear: both;
+    }
+
+    #mobile_img {
+    display: none;
     }
 }
 

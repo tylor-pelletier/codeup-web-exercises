@@ -1,0 +1,49 @@
+div {
+    box-sizing: border-box;
+}
+
+.container {
+    margin: 0 auto;
+    width: 80%;
+    max-width: 1200px;
+}
+
+.row {
+    width: 100%;
+    display: table;
+    clear: both;
+}
+
+.column {
+    float: left;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px 0px;
+    background-color: lightgray;
+}
+
+.one-half {
+    width: 50%;
+}
+
+.one-third {
+    width: 33.33%;
+}
+
+.one-fourth {
+    width: 25%;
+}
+
+.one-sixth {
+    width: 16.66%;
+}
+
+.one-eighth {
+    width: 12.5%;
+}
+
+@media screen and (max-width:768px) {
+    .container {
+        width: 100%;
+    }
+}
