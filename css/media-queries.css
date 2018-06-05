@@ -22,7 +22,7 @@ ul.nav-links a:visited {
 
 ul.nav-links li {
     padding: 1em;
-    margin: 1em;
+    margin: 1em 0em;
     background-color: lightgray;
 }
 
@@ -30,20 +30,32 @@ footer>p {
     float: left;
 }
 
-div#social-media-links li img {
-    height: 2em;
-    width: 2em;
-    float: right;
-    margin: 0em 5px;
+i {
+    margin: 0em 0px 0px 10px;
+    font-size: 150%;
 }
 
-div#social-media-links li {
+#social-media-links a {
+    text-decoration: none;
+    color: grey;
+}
+
+#social-media-links a:hover {
+    color: lightgray;
+}
+
+#social-media-links a:active {
+    color: grey;
+}
+
+#social-media-links {
     list-style-type: none;
+    float: right;
 }
 
 .alert-info {
     text-align: center;
-    margin: 1em;
+    margin: 1em 0em;
     padding: 1.5em;
     border: 2px solid lightgray;
     background-color: #b8f6ff;
@@ -57,6 +69,10 @@ div#social-media-links li {
 
 .header-img {
     text-align: center;
+}
+
+.header-img img {
+    width: 100%;
 }
 
 .sub-section {
@@ -118,15 +134,17 @@ div#social-media-links li {
     }
 
     .main   {
+        box-sizing: border-box;
         float: left;
         padding: 0px 20px 300px 0px;
-        width: calc(65% - 20px);
+        width: 65%;
     }
 
     .sub-section {
+        box-sizing: border-box;
         padding: 0px 0px 300px 0px;
         float: left;
-        width: calc(35% - 0px);
+        width: 35%;
         margin: 0px;
     }
 
