@@ -5,6 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Grid Layout</title>
     <link rel="stylesheet" href="css/grid-layout.css">
+    <style>
+        div {
+            box-sizing: border-box;
+        }
+
+        .container {
+            margin: 0 auto;
+            width: 80%;
+            max-width: 1200px;
+            /*  height: 100vh; Will make the container fit the entire page.*/
+        }
+
+        .row {
+            width: 100%;
+        }
+
+        .column {
+            border: 1px solid black;
+            float: left;
+            padding: 10px;
+            margin: 10px 0px;
+            background-color: lightgray;
+        }
+
+        .one-half {
+            width: 50%;
+        }
+
+        .one-third {
+            width: 33.33%;
+        }
+        .one-fourth {
+            width: 25%;
+        }
+        .one-eighth {
+            width: 12.5%;
+        }
+
+        @media screen and (max-width:768px) {
+            .one-half, .one-third, .one-fourth, .one-eighth {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">

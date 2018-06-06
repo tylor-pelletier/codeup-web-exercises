@@ -1,0 +1,88 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 1px;
+    background-color: #EEEEEE;
+}
+
+div {
+    box-sizing: border-box;
+}
+
+p {
+    color: indianred;
+    font-size: medium;
+    text-align: center;
+}
+
+h5 {
+    margin: 10px 0px 0px 0px;
+}
+
+input {
+    width: 70%;
+
+}
+
+button {
+
+}
+
+span {
+    text-decoration: underline;
+}
+
+header>div>div:last-child {
+    text-align: right;
+}
+
+section>div:first-child {
+    padding: 50px 0px 30px 0px;
+}
+
+div.bottom>img {
+    height: 50%;
+    width: 50%;
+    padding-bottom: 20px;
+}
+
+section>div:nth-child(3) {
+    padding: 0px 80px;
+    font-size: small;
+}
+
+section.bottom div:last-child {
+    padding: 20px 0px 50px 0px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1500px;
+}
+
+.row {
+    width: 100%;
+}
+
+.column {
+    float: left;
+    padding: 20px;
+}
+
+.street-art {
+    width: 100%;
+    float: left;
+}
+
+.bottom {
+    width: 100%;
+    text-align: center;
+    clear: both;
+}
+
+.one-half {
+    width: 50%;
+}
+
+@media screen and (min-width:768px) {
+
+}
