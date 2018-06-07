@@ -25,7 +25,7 @@
         </div>
         <form class="form-inline">
             <input class="form-control form-control-sm" type="search" placeholder="Zip Code">
-            <button class="btn btn-sm btn-outline-secondary bg-white" type="submit">Search stores near you!</button>
+            <button class="btn btn-sm btn-outline-secondary bg-white text-muted" type="submit">Search stores near you!</button>
         </form>
         <div class="navbar-nav ml-auto pr-3">
             <a class="text-muted" href="#"><i class="fas fa-user pr-1"></i>Sign up</a>
@@ -45,16 +45,17 @@
         <div>
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#"><span class="badge badge-pill badge-secondary">1</span>&nbsp;Size and crust</a>
+                    <a class="nav-link active" href="#step1"><span class="badge badge-pill badge-secondary">1</span>&nbsp;Size and crust</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="badge badge-pill badge-secondary">2</span>&nbsp;Cheese and Sauce</a>
+                    <a class="nav-link" href="#step2"><span class="badge badge-pill badge-secondary">2</span>&nbsp;Cheese and Sauce</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="t#"><span class="badge badge-pill badge-secondary">3</span>&nbsp;Toppings</a>
+                    <a class="nav-link" href="#step3"><span class="badge badge-pill badge-secondary">3</span>&nbsp;Toppings</a>
                 </li>
             </ul>
         </div>
+        <form method="post" action="https://webhook.site/f3fda554-1a9e-421d-a8cb-2150c3f71c6c">
         <div class="card" id="step1">
             <div>
                 <div class="card-header bg-primary text-light">
@@ -70,8 +71,8 @@
                         </div>
                         <div class="card">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><input type="radio" name="tossed-size" id="small" value="small">&ensp;Small (10")</li>
-                                <li class="list-group-item"><input type="radio" name="tossed-size" id="medium" value="medium">&ensp;Medium (12")</li>
+                                <li class="list-group-item"><input type="radio" name="size-crust" id="small" value="small-tossed">&ensp;Small (10")</li>
+                                <li class="list-group-item"><input type="radio" name="size-crust" id="medium" value="medium-tossed">&ensp;Medium (12")</li>
                             </ul>
                         </div>
                     </div>
@@ -85,8 +86,8 @@
                         </div>
                         <div class="card">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><input type="radio" name="thin-size" id="medium" value="medium">&ensp;Medium (12")</li>
-                                <li class="list-group-item"><input type="radio" name="thin-size" id="large" value="large">&ensp;Large (14")</li>
+                                <li class="list-group-item"><input type="radio" name="size-crust" id="medium" value="medium-thin">&ensp;Medium (12")</li>
+                                <li class="list-group-item"><input type="radio" name="size-crust" id="large" value="large-thin">&ensp;Large (14")</li>
                             </ul>
                         </div>
                     </div>
@@ -190,16 +191,17 @@
                                 <li class="list-group-item"><input type="checkbox" name="peppers" id="pepper" value="peppers">&ensp;Green Peppers</li>
                                 <li class="list-group-item"><input type="checkbox" name="mushrooms" id="mushrooms" value="mushrooms">&ensp;Mushroom</li>
                                 <li class="list-group-item"><input type="checkbox" name="onions" id="onions" value="onions">&ensp;Onions</li>
-                                <li class="list-group-item"><input type="checkbox" name="jalepeño" id="jalepeño" value="jalepeño">&ensp;Jalepeño Peppers</li>
+                                <li class="list-group-item"><input type="checkbox" name="jalepeno" id="jalepeno" value="jalepeno">&ensp;Jalepeño Peppers</li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer text-right">
-                    <a href="#" class="btn btn-primary">Checkout&nbsp;<i class="fas fa-shopping-cart"></i></a>
+                    <button type="submit" href="#" class="btn btn-primary">Checkout&nbsp;<i class="fas fa-shopping-cart"></i></button>
                 </div>
             </div>
         </div>
+        </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
