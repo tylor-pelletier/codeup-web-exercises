@@ -1,0 +1,22 @@
+#selected-nav {
+    background-color: #DDDDDD;
+}
+
+
+
+@media (min-width: 768px) {
+
+    .jumbotron {
+        position: relative;
+    }
+
+    h1 {
+        text-align: center;
+        position: absolute;
+        top: 35%;
+        width: 100%;
+        background-color: white;
+        opacity: .7;
+        font-size: 100px;
+    }
+}
