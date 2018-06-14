@@ -19,26 +19,32 @@
 (function startOver() {
     var enterANumber = confirm("Would you like to enter a number?");
 
-    if (enterANumber === true) {
+    if (enterANumber) {
+
         var aNumber = prompt("Enter a number:");
+
         if (aNumber % 2 === 1) {
             alert("This number is odd.")
         } else if (aNumber % 2 === 0) {
             alert("This number is even.")
-        } else {
-            alert("I told you to enter a number...");
-            startOver();
         }
-        alert(aNumber + " + 100 = " + (parseInt(aNumber) + 100));
+
+        if (aNumber >= 0 || aNumber < 0) {
+            alert(aNumber + " + 100 = " + (parseInt(aNumber) + 100));
+        } else {
+            console.log("Didn't enter a number")
+        }
+
         if (aNumber >= 0) {
             alert("The number is positive.")
         } else if (aNumber < 0) {
             alert("The number is negative.")
         } else {
-            alert("Should of entered a number like I said...")
+            alert("Should of entered a number...")
         }
-    } else if (enterANumber === false) {
-        alert("I didn't want you to enter a number anyway...")
+
+    } else {
+        alert("I didn't want you to enter a number anyway...");
         startOver();
     }
 }());
@@ -91,7 +97,6 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
             console.log("I don't know anything about the color " + color)
         }
     }
-
     analyzeColor(randomColor);
 }());
 
@@ -145,7 +150,6 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
             alert("I don't know anything about the color " + color)
         }
     }
-
     analyzeColor(prompt("Pick a color"));
 }());
 
@@ -192,11 +196,11 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
 
     function calculateTotal(originalPrice, discountOff) {
         var total = (originalPrice - discountOff);
-        return total;
+        return total.toFixed(2);
     }
-    alert("Your total is $" + originalTotal + " before the discount.");
     alert("Your lucky number is " + luckyNumber + "!");
-    alert("Your total is now $" + calculateTotal(originalTotal, totalOff) + "!");
+    alert("Your price was $" + originalTotal + " before the discount.");
+    alert("Your new price is $" + calculateTotal(originalTotal, totalOff) + " after the discount!");
     console.log(luckyNumber);
     console.log(calculateTotal(originalTotal, totalOff));
 }());
@@ -208,5 +212,87 @@ var randomColor = colors[Math.floor(Math.random() * colors.length)];
  * and alerts to display to the user what their lucky number was, what their
  * price before the discount was, and what their price after the discount is.
  */
-// Generate a random number between 0 and 6
+// Generate a random number between 0 and 5
 // var luckyNumber = Math.floor(Math.random() * 6);
+
+
+// TEN FUNCTIONS EXTRA EXERCISE
+
+// function isTrue(input) {
+//     if (input === true) {
+//         console.log(true);
+//     } else {
+//         console.log(false);
+//     }
+// }
+// isTrue(true);
+//
+// function isFalse(input) {
+//     if (input === false) {
+//         console.log(true);
+//     } else {
+//         console.log(false);
+//     }
+// }
+// isFalse(false);
+//
+// function not(input) {
+//     if (input === true) {
+//         console.log(false);
+//     } else {
+//         console.log(true);
+//     }
+// }
+// not(1);
+//
+// function addOne(input) {
+//     return parseInt(input) + 1;
+// }
+// console.log(addOne(5));
+//
+// function isEven(input) {
+//     if (input % 2 === 0) {
+//         console.log(true)
+//     } else {
+//         console.log(false)
+//     }
+// }
+// isEven(4);
+//
+// function isIdentical(input1, input2) {
+//     if (input1 === input2) {
+//         console.log(true)
+//     } else {
+//         console.log(false)
+//         }
+//     }
+//     isIdentical("1", "1");
+//
+// function isEqual(input1, input2) {
+//     if (input1 == input2) {
+//         console.log(true)
+//     } else {
+//         console.log(false)
+//     }
+//     }
+//     isEqual("1", 1);
+// function or(input1, input2) {
+//     if ((input1 || input2) === true) {
+//         console.log(true)
+//     } else {
+//         console.log(false)
+//     }
+//     }
+//     or(true, 0);
+// function and(input1, input2) {
+//     if ((input1 && input2) === true) {
+//         console.log(true)
+//     } else {
+//         console.log(false)
+//     }
+//     }
+//     and(0, 1);
+// function concat(input1, input2) {
+//     console.log(input1 + input2)
+// }
+// concat("Hello, ", "Tylor");

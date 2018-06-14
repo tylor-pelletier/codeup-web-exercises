@@ -6,10 +6,10 @@
 
 // 1) Make a function called returnTwo() that returns the number 2 when called
 // ---Test this function with console.log(returnTwo())
-    function returnTwo(example) {
-        return example;
+    function returnTwo() {
+        return 2;
     }
-    console.log(returnTwo(2));
+    console.log(returnTwo(8));
 
 // 2) Make a function called returnName() that returns the string of your name
 // ---Test this function with console.log(returnName())
@@ -21,26 +21,23 @@
 // 3) Make a function called addThree() which takes in a number input and returns the number plus 3.
 // ---Test this function with console.log(addThree(5))
     function addThree(number) {
-        var total = number + 3;
-        return total;
+        return number + 3;
     }
-    console.log(addThree(5));
+    console.log(addThree(7));
 
 // 4) Make a function called sayString() which returns the string input passed in.
 // ---Test this function with console.log(sayString())
     function sayString(string) {
-        var saying = string;
-        return saying;
+        return string;
     }
-    console.log(sayString("Why hello there."));
+    console.log(sayString("Well hello."));
 
 // 5) Make a function called sayHowdy() which console.logs the string “Howdy!”
 // ---Test this function by directly calling sayHowdy()
 // ---Remember this function does not need a defined return value
-    function sayHowdy(howdy) {
-        console.log(howdy);
+    function sayHowdy() {
+        console.log("Howdy!");
     }
-    sayHowdy("Howdy!");
 
 // ================ CHALLENGE FUNCTION DRILLS
 
@@ -85,7 +82,14 @@
     console.log(reverse("This is a string"));
 
 // Write a function called `isNumeric(input)` that takes an input and returns a boolean if the input is numeric.
-
+    function isNumeric(input) {
+        if (input >= 0 || input < 0) {
+            console.log(true)
+        } else {
+            console.log(false)
+        }
+    }
+    isNumeric(7);
 
 // Write a function called `count(input)` that takes in a string and returns the number of characters.
     function count(numberOfCharacters) {
@@ -95,75 +99,60 @@
     console.log(count("This is a string"));
 
 // Write a function called `add(a, b)` that returns the sum of a and b
-    var ab = prompt("Pick a number:");
-    var bc = prompt("Pick a number to add to the first number:");
     function add(a, b) {
         var total = (a + b);
         return total;
     }
-    console.log(add(parseInt(ab), parseInt(bc)));
-    alert(parseInt(ab) + " + " + parseInt(bc) + " = " + (parseInt(ab) + parseInt(bc)));
+    console.log(add(7, 7));
 
 // Write a function called `subtract(a, b)` that return the difference between the two inputs.
-    var c = prompt("Pick a number:");
-    var d = prompt("Pick a number to subtract from the first number:");
     function subtract(a, b) {
         var sub = (a - b);
         return sub;
     }
-    console.log(subtract(c, d));
-    alert(c + " - " + d + " = " + (c - d));
+    console.log(subtract(7, 5));
 
 // Write `multiply(a, b)` function that returns the product
-    var e = prompt("Pick a number:");
-    var f = prompt("Pick a number to multiply the first number:");
     function multiply(a, b) {
         var product = (a * b);
         return product;
     }
-    console.log(multiply(e, f));
-    alert(parseInt(e) + " * " + parseInt(f) + " = " + (parseInt(e) * parseInt(f)));
+    console.log(multiply(7, 7));
 
 // Write a divide(numerator, denominator) function that returns a divided by b
-    var g = prompt("Pick a number:");
-    var h = prompt("Pick a number to divide the first number:");
     function divide(numerator, denominator) {
         var outcome = (numerator / denominator);
         return outcome;
     }
-    console.log(divide(g, h));
-    alert(parseInt(g) + " / " + parseInt(h) + " = " + (parseInt(g) / parseInt(h)));
+    console.log(divide(7, 5));
 
 // Write a remainder(number, divisor) function that returns the remainder left over when dividing `number` by the `divisor`
-    var number2 = prompt("Pick a number:");
-    var divisor = prompt("Pick a number to divide the first number:");
     function remainder(original, dividing) {
         var whatIsLeft = (original % dividing);
         return whatIsLeft;
     }
-    console.log(remainder(number2, divisor));
-    alert(parseInt(number2) + " % " + parseInt(divisor) + " = " + (parseInt(number2) % parseInt(divisor)));
+    console.log(remainder(9, 5));
 
 // Write the function `square(a)` that takes in a number and returns the number multiplied by itself.
-    var multiplyItself = prompt("Pick a number to multiply by itself:");
     function square(a) {
         var repeat = (a * a);
         return repeat;
     }
-    console.log(square(multiplyItself));
+    console.log(square(7));
 
 // # Super Duper Gold-Star Bonus
 // Write a function called sumOfSquares(a, b) that uses only your add() function and your square function and not + or * operators
-//     function sumOfSquares(i, j) {
-//
-//     }
-//     console.log(sumOfSquares());
+    function sumOfSquares(a, b) {
+        var totals = add(square(a), square(b));
+        return totals;
+    }
+    console.log(sumOfSquares(5, 7));
 
 // Write a function called doMath(operator, a, b) that takes 3 parameters. The first parameter is the name of the math function you want to apply. a and b are the two numbers to run that function on.
-//     function doMath(operator, a, b) {
-//
-//     }
-//     console.log(doMath());
+    function doMath(operator, a, b) {
+        return operator(a, b);
+    }
+    console.log(doMath(multiply, 5, 7));
 }());
 
 /**
@@ -181,7 +170,7 @@ function sayHello(name) {
     return "Hello, " + name + "!";
 }
 
-console.log(sayHello(prompt("What is your name?")));
+console.log(sayHello("Tylor"));
 
 /**
  * TODO:
@@ -269,7 +258,8 @@ console.log(isTwo(random));
  */
 
 var billDollars = prompt("How much was your bill?");
-var tip = prompt("What decimal of a tip would you like to leave?");
+var tip = prompt("What percentage of a tip would you like to leave?");
+    tip /= 100;
 
 function calculateTip(billAmount, tipAmount) {
     tipAmount *= billAmount;
@@ -296,8 +286,9 @@ alert("You should leave a $" + calculateTip(billDollars, tip) + " tip.");
 
 (function () {
     var originalPrice = prompt("How much is the original price of the item?");
-    var discount = prompt("What is the decimal of the discount off?");
-    discount *= originalPrice;
+    var discount = prompt("What percentage of the discount off?");
+        discount /= 100;
+        discount *= originalPrice;
 
     function applyDiscount(originalPriceDollars, discountPercent) {
         var priceTotal = originalPriceDollars - discountPercent;
