@@ -105,34 +105,34 @@
     alert(parseInt(ab) + " + " + parseInt(bc) + " = " + (parseInt(ab) + parseInt(bc)));
 
 // Write a function called `subtract(a, b)` that return the difference between the two inputs.
-    var cd = prompt("Pick a number:");
-    var de = prompt("Pick a number to subtract from the first number:");
-    function subtract(c, d) {
-        var sub = (c - d);
+    var c = prompt("Pick a number:");
+    var d = prompt("Pick a number to subtract from the first number:");
+    function subtract(a, b) {
+        var sub = (a - b);
         return sub;
     }
-    console.log(subtract(cd, de));
-    alert(cd + " - " + de + " = " + (cd - de));
+    console.log(subtract(c, d));
+    alert(c + " - " + d + " = " + (c - d));
 
 // Write `multiply(a, b)` function that returns the product
-    var ef = prompt("Pick a number:");
-    var fg = prompt("Pick a number to multiply the first number:");
-    function multiply(e, f) {
-        var product = (e * f);
+    var e = prompt("Pick a number:");
+    var f = prompt("Pick a number to multiply the first number:");
+    function multiply(a, b) {
+        var product = (a * b);
         return product;
     }
-    console.log(multiply(ef, fg));
-    alert(parseInt(ef) + " * " + parseInt(fg) + " = " + (parseInt(ef) * parseInt(fg)));
+    console.log(multiply(e, f));
+    alert(parseInt(e) + " * " + parseInt(f) + " = " + (parseInt(e) * parseInt(f)));
 
 // Write a divide(numerator, denominator) function that returns a divided by b
-    var gh = prompt("Pick a number:");
-    var hi = prompt("Pick a number to divide the first number:");
-    function divide(g, h) {
-        var outcome = (g / h);
+    var g = prompt("Pick a number:");
+    var h = prompt("Pick a number to divide the first number:");
+    function divide(numerator, denominator) {
+        var outcome = (numerator / denominator);
         return outcome;
     }
-    console.log(divide(gh, hi));
-    alert(parseInt(gh) + " / " + parseInt(hi) + " = " + (parseInt(gh) / parseInt(hi)));
+    console.log(divide(g, h));
+    alert(parseInt(g) + " / " + parseInt(h) + " = " + (parseInt(g) / parseInt(h)));
 
 // Write a remainder(number, divisor) function that returns the remainder left over when dividing `number` by the `divisor`
     var number2 = prompt("Pick a number:");
@@ -160,8 +160,10 @@
 //     console.log(sumOfSquares());
 
 // Write a function called doMath(operator, a, b) that takes 3 parameters. The first parameter is the name of the math function you want to apply. a and b are the two numbers to run that function on.
-
-
+//     function doMath(operator, a, b) {
+//
+//     }
+//     console.log(doMath());
 }());
 
 /**
