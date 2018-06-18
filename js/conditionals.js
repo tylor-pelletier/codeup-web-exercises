@@ -236,6 +236,60 @@ alert(analyzeColor(prompt("Pick a color")));
  * Test your function by passing it various values and checking for the expected
  * return value.
  */
+
+// USING SWITCH AND HARD NUMBERS
+
+function calculatedTotal(luckyNumber, total) {
+    var discountedPrice = 0;
+
+    switch (luckyNumber) {
+        case 0:
+            discountedPrice = total;
+            break;
+        case 1:
+            discountedPrice = total * (0.9);
+            break;
+        case 2:
+            discountedPrice = total * (0.85);
+            break;
+        case 3:
+            discountedPrice = total * (0.75);
+            break;
+        case 4:
+            discountedPrice = total * (0.5);
+            break;
+        case 5:
+            discountedPrice = total * (0);
+            break;
+        default:
+            discountedPrice = "Invalid lucky number"
+    }
+
+    return discountedPrice;
+}
+
+var luckyNumber = Math.floor(Math.random() * 6);
+console.log(luckyNumber);
+console.log(calculatedTotal(luckyNumber, 50));
+
+luckyNumber = Math.floor(Math.random() * 6);
+console.log(luckyNumber);
+console.log(calculatedTotal(luckyNumber, 100));
+
+// MAKING A FUNCTION TO BE USED IN MULTIPLE PLACES
+
+function genRandNum() {
+    Math.floor(Math.random() * 6);
+}
+
+luckyNumber = genRandNum();
+console.log(luckyNumber);
+console.log(calculatedTotal(luckyNumber, 200));
+
+luckyNumber = genRandNum();
+console.log(luckyNumber);
+console.log(calculatedTotal(luckyNumber, 300));
+
 /**
  * TODO:
  * Uncomment the line below to generate a random number between 0 and 5.
@@ -250,15 +304,17 @@ alert(analyzeColor(prompt("Pick a color")));
     if (luckyNumber === 0) {
         var discount = 0;
     } else if (luckyNumber === 1) {
-            discount = .10;
+        discount = .10;
     } else if (luckyNumber === 2) {
-            discount = .25;
+        discount = .25;
     } else if (luckyNumber === 3) {
-            discount = .35;
+        discount = .35;
     } else if (luckyNumber === 4) {
-            discount = .50;
+        discount = .50;
     } else if (luckyNumber === 5) {
-            discount = 1;
+        discount = 1;
+    } else {
+        discount = "Invalid lucky number"
     }
 
     var totalOff = discount * originalTotal;
@@ -273,85 +329,3 @@ alert(analyzeColor(prompt("Pick a color")));
     console.log(luckyNumber);
     console.log(calculateTotal(originalTotal, totalOff));
 }());
-
-
-// TEN FUNCTIONS EXTRA EXERCISE
-
-// function isTrue(input) {
-//     if (input === true) {
-//         console.log(true);
-//     } else {
-//         console.log(false);
-//     }
-// }
-// isTrue(true);
-//
-// function isFalse(input) {
-//     if (input === false) {
-//         console.log(true);
-//     } else {
-//         console.log(false);
-//     }
-// }
-// isFalse(false);
-//
-// function not(input) {
-//     if (input === true) {
-//         console.log(false);
-//     } else {
-//         console.log(true);
-//     }
-// }
-// not(1);
-//
-// function addOne(input) {
-//     return parseInt(input) + 1;
-// }
-// console.log(addOne(5));
-//
-// function isEven(input) {
-//     if (input % 2 === 0) {
-//         console.log(true)
-//     } else {
-//         console.log(false)
-//     }
-// }
-// isEven(4);
-//
-// function isIdentical(input1, input2) {
-//     if (input1 === input2) {
-//         console.log(true)
-//     } else {
-//         console.log(false)
-//         }
-//     }
-//     isIdentical("1", "1");
-//
-// function isEqual(input1, input2) {
-//     if (input1 == input2) {
-//         console.log(true)
-//     } else {
-//         console.log(false)
-//     }
-//     }
-//     isEqual("1", 1);
-// function or(input1, input2) {
-//     if ((input1 || input2) === true) {
-//         console.log(true)
-//     } else {
-//         console.log(false)
-//     }
-//     }
-//     or(true, 0);
-// function and(input1, input2) {
-//     if ((input1 && input2) === true) {
-//         console.log(true)
-//     } else {
-//         console.log(false)
-//     }
-//     }
-//     and(0, 1);
-// function concat(input1, input2) {
-//     console.log(input1 + input2)
-// }
-// concat("Hello, ", "Tylor");

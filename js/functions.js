@@ -299,3 +299,55 @@ alert("You should leave a $" + calculateTip(billDollars, tip) + " tip.");
     alert("Your total after the discount is $" + applyDiscount(originalPrice, discount) + ".");
 }());
 }());
+
+
+// COMPLETED TEST ON https://ten-functions.glitch.me/
+
+// function isTrue(input) {
+//     if (input === true) {
+//         return true;
+//     }
+//     return false;
+// }
+//
+// function isFalse(input) {
+//     if (input === false) {
+//         return true;
+//     }
+//     return false;
+// }
+//
+// function not(input) {
+//     return !input;
+// }
+//
+// function addOne(input) {
+//     return parseFloat(input) + 1;
+// }
+//
+// function isEven(input) {
+//     if (input % 2 === 0) {
+//         return true;
+//     }
+//     return false;
+// }
+//
+// function isIdentical(input1, input2) {
+//     return input1 === input2;
+// }
+//
+// function isEqual(input1, input2) {
+//     return input1 == input2;
+// }
+//
+// function or(input1, input2) {
+//     return input1 || input2;
+// }
+//
+// function and(input1, input2) {
+//     return input1 && input2;
+// }
+//
+// function concat(input1, input2) {
+//     return input1.toString() + input2.toString();
+// }
