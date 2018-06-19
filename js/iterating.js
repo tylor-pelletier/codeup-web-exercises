@@ -34,7 +34,7 @@
      * array.
      */
 
-    for (var i = 0; i < names.length; i++) {
+    for (var i = 0; i < names.length; i += 1) {
         console.log("The name at index " + i + " is: " + names[i]);
     }
 

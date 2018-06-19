@@ -31,7 +31,7 @@
     console.log(stringOfPlanets);
 
 
-    var anotherStringOfPlanets = <ul>"<li>Mercury</li><li>Venus</li><li>Earth</li><li>Mars</li><li>Jupiter</li><li>Saturn</li><li>Uranus</li><li>Neptune</li>"</ul>;
+    var anotherStringOfPlanets = "<ul><li>Mercury</li><li>Venus</li><li>Earth</li><li>Mars</li><li>Jupiter</li><li>Saturn</li><li>Uranus</li><li>Neptune</li></ul>";
 
     console.log(anotherStringOfPlanets);
 

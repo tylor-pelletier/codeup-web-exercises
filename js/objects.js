@@ -35,6 +35,13 @@
 
     person.sayHello();
 
+
+
+    person.logFirstAndLastNames = function () {
+        console.log("First and last name is: " + this.firstName + " " + this.lastName);
+    };
+    person.logFirstAndLastNames();
+
     /** TODO:
      * HEB has an offer for the shoppers that buy products amounting to
      * more than $200. If a shopper spends more than $200, they get a 12%
@@ -49,11 +56,32 @@
      * and console.log the relevant messages for each person
      */
 
-    // var shoppers = [
-    //     {name: 'Cameron', amount: 180},
-    //     {name: 'Ryan', amount: 250},
-    //     {name: 'George', amount: 320}
-    // ];
+    function discountForShoppers() {
+        if (total > 200) {
+
+        }
+    }
+
+    var shoppers = [
+        {name: 'Cameron', amount: 180},
+        {name: 'Ryan', amount: 250},
+        {name: 'George', amount: 320}
+    ];
+
+    var shopper = {name: 'Cameron'};
+
+    console.log("Here are all the names of the shoppers:");
+    shoppers.forEach(function(shopper) {
+        shopper.name.forEach(function(name) {
+            console.log(name);
+        });
+    });
+
+
+
+
+
+
 
     /** TODO:
      * Create an array of objects that represent books and store it in a
