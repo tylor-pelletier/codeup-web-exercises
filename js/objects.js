@@ -30,7 +30,7 @@
      */
 
     person.sayHello = function () {
-        console.log("Hello from " + person.firstName + " " + person.lastName)
+        console.log("Hello from " + this.firstName + " " + this.lastName)
     };
 
     person.sayHello();
@@ -56,31 +56,38 @@
      * and console.log the relevant messages for each person
      */
 
-    function discountForShoppers() {
-        if (total > 200) {
-
-        }
-    }
-
     var shoppers = [
         {name: 'Cameron', amount: 180},
         {name: 'Ryan', amount: 250},
         {name: 'George', amount: 320}
     ];
 
-    var shopper = {name: 'Cameron'};
-
-    console.log("Here are all the names of the shoppers:");
     shoppers.forEach(function(shopper) {
-        shopper.name.forEach(function(name) {
-            console.log(name);
-        });
+        if (shopper.amount > 200) {
+            alert("Shopper " + shopper.name);
+            alert("Your total was $" + shopper.amount);
+            alert("The discount off is $" + (shopper.amount * 0.12));
+            alert("Your new total is $" + (shopper.amount - (shopper.amount * 0.12)));
+        } else {
+            alert("Shopper " + shopper.name);
+            alert("You did not spend over $200. You need to buy $" + (200 - shopper.amount) + " more to get the discount, no discount applied")
+        }
     });
 
-
-
-
-
+    // function discountForShoppers(total, name) {
+    //     if (total > 200) {
+    //         alert("Shopper " + name);
+    //         alert("Your total was $" + total);
+    //         alert("The discount off is $" + (total * 0.12));
+    //         alert("Your new total is $" + (total - (total * 0.12)));
+    //     } else {
+    //         alert("Shopper " + name);
+    //         alert("You did not spend over $200. You need to buy $" + (200 - total) + " more to get the discount, no discount applied")
+    //     }
+    // }
+    // discountForShoppers(shoppers[0].amount, shoppers[0].name);
+    // discountForShoppers(shoppers[1].amount, shoppers[1].name);
+    // discountForShoppers(shoppers[2].amount, shoppers[2].name);
 
 
     /** TODO:
@@ -95,6 +102,18 @@
      * > console.log(books[0].author.firstName) // "Douglas"
      * > console.log(books[0].author.lastName) // "Adams"
      */
+
+    // var books = [
+    //     {title: "Harry Potter", author: {firstName: "J.K.", lastName: "Rowling"}},
+    //     {title: "The Lord of the Rings", author: {firstName: "R.R.", lastName: "Tolken"}},
+    //     {title: "1984", author: {firstName: "George", lastName: "Orwell"}},
+    //     {title: "A Game of Thrones", author: {firstName: "George", lastName: "Martin"}},
+    //     {title: "The Giver", author: {firstName: "Lois", lastName: "Lowry"}}
+    // ];
+    //
+    // console.log(books[0].title);
+    // console.log(books[3].author.firstName);
+    // console.log(books[1].author.lastName);
 
     /**
      * TODO:
@@ -121,6 +140,12 @@
      *      ...
      */
 
+    // books.forEach(function(book, index) {
+    //     console.log("Book #" + (index + 1));
+    //     console.log("Title: " + book.title);
+    //     console.log("Author: " + book.author.firstName + " " + book.author.lastName)
+    // });
+
     /**
      * Bonus:
      * - Create a function named `createBook` that accepts a title and author
@@ -131,5 +156,34 @@
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
+
+    // function createBook(bookTitle, authorFirstName, authorLastName) {
+    //     return {title: bookTitle, author: {firstName: authorFirstName, lastName: authorLastName}};
+    // }
+    // createBook("Harry Potter", "J.K.", "Rowling");
+    //
+    // function showBookInfo(bookObject) {
+    //     return console.log([bookObject]);
+    // }
+    // showBookInfo(createBook("Harry Potter", "J.K.", "Rowling"));
+
+    function createABook(bookTitle, authorFirstName, authorLastName) {
+        return {title: bookTitle, author: {firstName: authorFirstName, lastName: authorLastName}};
+    }
+    createABook("Harry Potter", "J.K.", "Rowling");
+    createABook("The Lord of the Rings", "R.R.", "Tolken");
+    createABook("1984", "George", "Orwell");
+    createABook("A Game of Thrones", "George", "Martin");
+    createABook("The Giver", "Lois", "Lowry");
+
+    function showBookInfo(bookObject1, bookObject2, bookObject3, bookObject4, bookObject5) {
+        var books = [bookObject1, bookObject2, bookObject3, bookObject4, bookObject5];
+        books.forEach(function(book, index) {
+            console.log("Book #" + (index + 1));
+            console.log("Title: " + book.title);
+            console.log("Author: " + book.author.firstName + " " + book.author.lastName)
+        });
+    }
+    showBookInfo(createABook("Harry Potter", "J.K.", "Rowling"), createABook("The Lord of the Rings", "R.R.", "Rowling"), createABook("1984", "George", "Orwell"), createABook("A Game of Thrones", "George", "Martin"), createABook("The Giver", "Lois", "Lowry"));
 
 })();

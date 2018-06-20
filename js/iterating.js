@@ -69,12 +69,12 @@
     function returnsSecond(array) {
         return console.log(array[1]);
     }
-    function returnsThird(array) {
-        return console.log(array[2]);
+    function returnsLast(array) {
+        return console.log(array.length - 1);
     }
 
     returnsFirst(numbers);
     returnsSecond(numbers);
-    returnsThird(numbers);
+    returnsLast(numbers);
 
 })();
