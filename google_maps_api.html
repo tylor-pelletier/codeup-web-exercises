@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Google Maps API</title>
     <style type="text/css">
         #map-canvas {
             width: 900px;
@@ -17,6 +21,9 @@
 
 <!-- Script to show address on map -->
 <script type="text/javascript">
+
+    "use strict";
+
     // (function() {
     //     "use strict";
     //
@@ -45,7 +52,7 @@
     //     var geocoder = new google.maps.Geocoder();
     //
     //     // Geocode our address
-    //     geocoder.geocode({ "address": address }, function(results, status) {
+    //     geocoder.geocode({"address": address}, function(results, status) {
     //
     //         // Check for a successful result
     //         if (status === google.maps.GeocoderStatus.OK) {
@@ -74,27 +81,29 @@
     //     });
     //
     //     // Attaches an info window to a marker with the provided message. When the
-    //     // marker is clicked, the info window will open with the secret message.
+    //     // marker is clicked, the info window will open with the content
     //     marker.addListener('click', function() {
     //         infoWindow.open(marker.get('map'), marker);
     //     });
     // })();
 
-    (function() {
-        "use strict";
+    // ================ Bonus
+
+    (function () {
 
         // Set our map options
         var mapOptions = {
             // Set the zoom level
-            zoom: // 5,
+            zoom: 4,
+                  // 5,
                   // 10,
                   // 15,
-                     16,
+                  // 16,
 
             // This sets the center of the map at our location
             center: {
-                lat:  29.426791, //  47.2492,
-                lng: -98.489602  // -68.5998
+                lat:  29.426791, //  47.2492285,
+                lng: -98.489602  // -68.5997974
             }
         };
 
@@ -102,19 +111,22 @@
         var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
         // Set our address to geocode
-        var address = "250 W Main St, Fort Kent, ME 04743";
+        // var address = "250 W Main St, Fort Kent, ME 04743";
 
         // Init geocoder object
         var geocoder = new google.maps.Geocoder();
 
         // Geocode our address
-        geocoder.geocode({ "address": address }, function(results, status) {
+        geocoder.geocode({address: "Swamp Buck"}, function(results, status) {
 
             // Check for a successful result
             if (status === google.maps.GeocoderStatus.OK) {
 
                 // Recenter the map over the address
                 map.setCenter(results[0].geometry.location);
+                console.log("Geocoder status: " + status);
+                console.log(results[0].geometry.location.lat());
+                console.log(results[0].geometry.location.lng());
             } else {
 
                 // Show an error message with the status if our request fails
@@ -122,24 +134,41 @@
             }
         });
 
+        // REVERSE GEOCODE
+        // geocoder.geocode({location: {lat: 29.426791, lng: -98.489602}}, function(results, status) {
+        //
+        //     // Check for a successful result
+        //     if (status === google.maps.GeocoderStatus.OK) {
+        //
+        //         // Recenter the map over the address
+        //         map.setCenter(results[0].geometry.location);
+        //         console.log("Geocoder status: " + status);
+        //         console.log(results);
+        //     } else {
+        //
+        //         // Show an error message with the status if our request fails
+        //         alert("Geocoding was not successful - STATUS: " + status);
+        //     }
+        // });
+
         // Multiple markers location, latitude, and longitude
         var markers = [
-            ['Swamp Buck', 47.2492, -68.5998],
-            ['The World of Beer', 38.9812, -77.0936],
-            ['Yellowtail Sushi', 29.6099, -98.5999]
+            ['Swamp Buck', 47.2492285, -68.5997974], // Fort Kent, Maine
+            ['The World of Beer', 38.9812, -77.0936], // Bethesda, Maryland
+            ['Yellowtail Sushi', 29.6099, -98.5999] // San Antonio, Texas
         ];
 
         // Info window content
         var infoWindowContent = [
             ['<div class="info_content">' +
-            '<h3>Swamp Buck Restaurant & Lounge</h3>' +
-            '<p><em>This restaurant has a relaxing woodland environment<br>with the best broiled scallops dish!</em></p>' + '<p>250 W Main St, Fort Kent, ME 04743</p>' + '<a href="http://www.fortkentchamber.com/swamp-buck-restaurant.html" target="_blank">Swamp Buck Website</a>' + '</div>'],
+            '<a href="http://www.fortkentchamber.com/swamp-buck-restaurant.html" target="_blank"><h3>Swamp Buck Restaurant & Lounge</h3></a>' +
+            '<p>This restaurant has a relaxing woodland environment<br>with the best broiled scallops dish you\'ve ever had</p>' + '<p><em>250 W Main St, Fort Kent, ME 04743</em></p>' + '</div>'],
             ['<div class="info_content">' +
-            '<h3>The World of Beer</h3>' +
-            '<p>This pub has an amazing selection of world renowned<br>beeralong with an amazing selection of pub style food.</p>' + '<p>7200 Wisconsin Ave, Bethesda, MD 20814</p>' + '<a href="https://worldofbeer.com/Locations/Bethesda" target="_blank">The World of Beer Website</a>' + '</div>'],
+            '<a href="https://worldofbeer.com/Locations/Bethesda" target="_blank"><h3>The World of Beer</h3></a>' +
+            '<p>This pub has an amazing selection of world renowned<br>beer along with an amazing selection of pub style food.</p>' + '<p><em>7200 Wisconsin Ave, Bethesda, MD 20814</em></p>' + '</div>'],
             ['<div class="info_content">' +
-            '<h3>Yellowfish Sushi</h3>' +
-            '<p>A restaurant in the perfect area uptown with plenty to<br>do after you get done filling up on their long list of<br>delicious sushi rolls</p>' + '<p>17711 Interstate 10 West suite 104, San Antonio, TX 78257</p>' + '<a href="https://www.yellowfishsushi.com/" target="_blank">Yellowfish Sushi Website</a>' + '</div>']
+            '<a href="https://www.yellowfishsushi.com/" target="_blank"><h3>Yellowfish Sushi</h3></a>' +
+            '<p>A restaurant in the perfect area uptown, with plenty to<br>do after you get done filling up on their long list of<br>delicious sushi rolls</p>' + '<p><em>17711 Interstate 10 West suite 104, San Antonio, TX 78257</em></p>' + '</div>']
         ];
         var infoWindow = new google.maps.InfoWindow(), marker, i;
 
