@@ -311,25 +311,25 @@
             });
 
             // Add info window to marker
-            // google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            //     return function() {
-            //         infoWindow.setContent(infoWindowContent[i][0]);
-            //         infoWindow.open(map, marker);
-            //     }
-            // })(marker, i));
-
-            google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
                 return function() {
                     infoWindow.setContent(infoWindowContent[i][0]);
                     infoWindow.open(map, marker);
                 }
             })(marker, i));
-            google.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
-                return function() {
-                    infoWindow.setContent(infoWindowContent[i][0]);
-                    infoWindow.close(map, marker);
-                }
-            })(marker, i));
+
+            // google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+            //     return function() {
+            //         infoWindow.setContent(infoWindowContent[i][0]);
+            //         infoWindow.open(map, marker);
+            //     }
+            // })(marker, i));
+            // google.maps.event.addListener(marker, 'mouseout', (function(marker, i) {
+            //     return function() {
+            //         infoWindow.setContent(infoWindowContent[i][0]);
+            //         infoWindow.close(map, marker);
+            //     }
+            // })(marker, i));
         }
         new AutocompleteDirectionsHandler(map);
 
