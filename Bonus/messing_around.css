@@ -1,5 +1,5 @@
 body {
-    background-image: url(../../../codeup/img/grey_background.jpg);
+    background-image: url(../img/grey_background.jpg);
     background-size: contain;
     color: #ffffff;
     font-family: "Sunflower", sans-serif;
@@ -53,7 +53,7 @@ a.link1:active {
 
 .parallax {
     /* The image used */
-    background-image: url("../../../codeup/img/snow_mountains.jpg");
+    background-image: url("../img/snow_mountains.jpg");
 
     /* Set a specific height */
     min-height: 600px;
@@ -94,20 +94,20 @@ a.link1:active {
 }
 
 .section1 {
-    list-style-image: url("../../../codeup/img/seven_lions_logo.png");
+    list-style-image: url("../img/seven_lions_logo.png");
     display: inline-block;
-    margin: 0px 30px;
+    margin: 0 30px;
 }
 
 .section2 {
     display: inline-block;
-    margin: 0px 30px;
+    margin: 0 30px;
 }
 
 .section3 {
     list-style-type: square;
     display: inline-block;
-    margin: 0px 30px;
+    margin: 0 30px;
 }
 
 .list {
@@ -130,7 +130,7 @@ a.link1:active {
     background-color: black;
     border: 3px solid #a0a0fa;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     padding: 12px 16px;
     z-index: 1;
 }

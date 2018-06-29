@@ -1,5 +1,5 @@
 body {
-    background-image: url("../../../codeup/img/forest_bonus.jpeg");
+    background-image: url("../img/forest_bonus.jpeg");
     background-size: cover;
     font-family: Raleway, sans-serif;
     font-weight: lighter;
@@ -41,11 +41,11 @@ a.link:visited {
 
 .top_text {
     font-size: 390%;
-    padding: 280px 0px 15px 0px;
+    padding: 280px 0 15px 0;
 }
 
 .bottom_text {
     font-size: large;
-    padding: 15px 0px 0px 0px;
+    padding: 15px 0 0 0;
 }
 
