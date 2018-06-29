@@ -11,32 +11,87 @@
     <input id="playInput"><button id="playButton">Play</button>
     <div id="playOutput"></div>
 
-    <p class="important">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem excepturi ipsa laborum necessitatibus nulla quibusdam repellat saepe sit temporibus veniam. Consectetur debitis natus quo repudiandae sapiente! Accusantium atque harum pariatur.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores at autem dolorum et eum incidunt labore laudantium maiores possimus quam, similique velit. Hic libero maxime necessitatibus, nobis quis saepe voluptates.</p>
-    <p class="important">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto autem eligendi fugiat itaque maiores minus, neque nisi obcaecati perferendis qui repellendus sequi, voluptate voluptatum. Architecto ex quos similique vel voluptatem!</p>
+    <ul>
+        <li id="gsd">German Shepherd</li>
+        <li id="beagle">Beagle</li>
+        <li id="corgi">Corgi</li>
+    </ul>
+
+    <p class="important codeup">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem excepturi ipsa laborum necessitatibus nulla quibusdam repellat saepe sit temporibus veniam. Consectetur debitis natus quo repudiandae sapiente! Accusantium atque harum pariatur.</p>
+    <p id="codeup">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores at autem dolorum et eum incidunt labore laudantium maiores possimus quam, similique velit. Hic libero maxime necessitatibus, nobis quis saepe voluptates.</p>
+    <p class="important codeup">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto autem eligendi fugiat itaque maiores minus, neque nisi obcaecati perferendis qui repellendus sequi, voluptate voluptatum. Architecto ex quos similique vel voluptatem!</p>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus beatae ipsam nisi nobis numquam perspiciatis veniam veritatis. Minus optio quasi reiciendis reprehenderit. Dolor earum necessitatibus, obcaecati officiis quas rem sit.</p>
-    <p class="important">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aspernatur commodi dicta, ducimus, eos id illum laborum laudantium, minus nisi non possimus rem rerum sunt totam ullam unde vero voluptatibus.</p>
+    <p class="important codeup">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aspernatur commodi dicta, ducimus, eos id illum laborum laudantium, minus nisi non possimus rem rerum sunt totam ullam unde vero voluptatibus.</p>
+
+    <div>
+        What a sentence.
+    </div>
 
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
     <script>
         "use strict";
-        // $(document).ready(function() {
-        //     alert( 'The DOM has finished loading!' );
-        // });
+        // JQUERY INTRODUCTION EXERCISE
+        // $(function () {
+        //     $(document).ready(function() {
+        //         alert( 'The DOM has finished loading!' );
+        //     });
+        // })
+
+        // ID SELECTORS EXERCISE
+        // $(function () {
+        //     alert($("#gsd").text());
+        //     alert($("#beagle").text());
+        // })
+
+        // CLASS SELECTORS EXERCISE
+        // $(function () {
+        //     $(".codeup").css("border", "1px solid red")
+        // })
+
+        // ELEMENT SELECTORS EXERCISE
+        // $(function () {
+        //     $("li").css("font-size", "20px");
+        //     $("h1").css("background-color", "lightblue");
+        //     $("p").css("background-color", "lightblue");
+        //     $("li").css("background-color", "lightblue");
+        //     alert($("h1").text())
+        // })
+        
+        // MULTIPLE SELECTORS EXERCISE
+        // $(function () {
+        //     $("h1, p, li").css("background-color", "lightblue");
+        // })
+
+        // MOUSE EVENTS EXERCISE
 
         $(function() {
-            $("#playButton").click(function () {
-                $("#playOutput").text($("#playInput").val());
+            $("h1").click(function () {
+                $("h1").css("background-color", "blue");
             });
-            $(".important").mouseover(function () {
-                $(this).css("background-color", "yellow")
-            })
-
-            // ANOTHER WAY
-            // $(".important").on("mouseover", function () {
-            //     $(this).css("background-color", "yellow")
-            // })
+            $("p").dblclick(function () {
+                $("p").css("font-size", "18px");
+            });
+            $("li").hover(
+                function () {
+                $("li").css("color", "red");
+            },
+                function () {
+                $("li").css("color", "black");
+            });
         })
+
+        // $(function() {
+        //     $("#playButton").click(function () {
+        //         $("#playOutput").text($("#playInput").val());
+        //     });
+        //     $(".important").mouseover(function () {
+        //         $(this).css("background-color", "yellow")
+        //     })
+        //     // ANOTHER WAY
+        //     // $(".important").on("mouseover", function () {
+        //     //     $(this).css("background-color", "yellow")
+        //     // })
+        // })
     </script>
 </body>
 </html>
