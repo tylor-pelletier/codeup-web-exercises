@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery Faq</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .highlight {
+            background-color: #00fff6;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Top Ten Most Visited National Parks in the US</h1>
+
+    <dl>
+        <dt>Great Smoky Mountains</dt>
+        <dd class="invisible">Most visited national park in the US, with 11 million visitors in on year.</dd>
+        <dt>Grand Canyon</dt>
+        <dd class="invisible">The Grand Canyon is 277 miles long being up to 1 mile deep and 18 miles wide at some points.</dd>
+        <dt>Zion</dt>
+        <dd class="invisible">Filled with rock towers, sandstone canyons, and sharp cliffs.</dd>
+        <dt>Rocky Mountain</dt>
+        <dd class="invisible">The park contains 150 lakes and 450 miles of streams.</dd>
+        <dt>Yosemite</dt>
+        <dd class="invisible">This mile-wide, 7-mile-long canyon was cut by a river and then widened and deepened by glacial action.</dd>
+        <dt>Yellowstone</dt>
+        <dd class="invisible">Yellowstone is the world's first national park.</dd>
+        <dt>Acadia National Park</dt>
+        <dd class="invisible">Located in Maine on Mount Desert Island.</dd>
+        <dt>Olympic</dt>
+        <dd class="invisible">No roads cross through the park. It contains a temperate rain forest, wildflower meadow, and rugged Pacific shore.</dd>
+        <dt>Grand Teton</dt>
+        <dd class="invisible">The peaks stand nearly 7,000 feet above the Wyoming valley floor.</dd>
+        <dt>Glacier</dt>
+        <dd class="invisible">The park's Going-to-the-Sun Road is considered by many to be one of the world's most spectacular drives.</dd>
+    </dl>
+    <br><br>
+    <a href="#" id="hide-definition">Toggle information</a>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script>
+        "use strict";
+
+        $("dt").css("font-weight", "bold");
+        $("dd").css("font-style", "italic");
+
+        $(document).ready(function () {
+            $("#hide-definition").click(function(event) {
+                event.preventDefault();
+                $(".invisible").toggleClass("hidden")
+            })
+        });
+
+        $(document).ready(function () {
+            $("dt").click(function(event) {
+                event.preventDefault();
+                $(this).toggleClass("highlight")
+            })
+        })
+
+    </script>
+
+</body>
+</html>
