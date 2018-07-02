@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Konami Code</title>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
 </head>
 <body>
-<h1>Konami Code</h1>
+<h1 class="font">Konami Code</h1>
 
 <audio id="contra">
     <source src="audio/contra_title.mp3" type="audio/mpeg">
@@ -13,6 +16,9 @@
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 <script>
     "use strict";
+
+    $("body").css("background-image", "url(img/contra-cover.jpeg)").css("background-size", "cover");
+    $(".font").css("font-family", "'Press Start 2P', cursive").css("font-size", "70px").css("text-align", "center").css("color", "white").css("transform", "rotate(270deg)").css("transform-origin", "left top 0").css("float", "left").css("margin", "770px 0 0 150px");
 
     // MAKE A FUNCTION TO KEEP VARIABLES LOCAL
     $(function () {
@@ -32,7 +38,7 @@
                 $("body").css("background-image", "url(img/contra.jpeg)").css("background-size", "cover");
                 $('audio#contra')[0].play()
             }
-        })
+        });
     });
 
 
