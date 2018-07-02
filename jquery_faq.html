@@ -18,6 +18,8 @@
 
     <h1>Top Ten Most Visited National Parks in the US</h1>
 
+    <a href="#" id="hide-definition">Toggle information</a>
+
     <dl>
         <dt>Great Smoky Mountains</dt>
         <dd class="invisible">Most visited national park in the US, with 11 million visitors in on year.</dd>
@@ -40,8 +42,35 @@
         <dt>Glacier</dt>
         <dd class="invisible">The park's Going-to-the-Sun Road is considered by many to be one of the world's most spectacular drives.</dd>
     </dl>
-    <br><br>
-    <a href="#" id="hide-definition">Toggle information</a>
+    <br>
+
+    <h1>National Park Facts</h1>
+
+    <h3 id="yellowstone-header">Yellowstone</h3>
+    <ul>
+        <li class="yellowstone">Yellowstone has more than 1800 archaeological sites.</li>
+        <li class="yellowstone">Established on March 1st, 1872, it is the world's first national park.</li>
+        <li class="yellowstone">Yellowstone has 1000 to 3000 earthquakes annually.</li>
+        <li class="yellowstone">There are more than 290 waterfalls and more than 300 active geysers.</li>
+    </ul>
+
+    <h3 id="acadia-header">Acadia National Park</h3>
+    <ul>
+        <li class="acadia">The deepest lake in the park is Jordan Pond. It is 150 feet deep.</li>
+        <li class="acadia">There are a total of 26 mountains in Acadia National Park.</li>
+        <li class="acadia">There are 120 miles of trails for hiking in the park.</li>
+        <li class="acadia">In the park, Cadillac Mountain is not only the highest mountain along the Atlantic Coast but also one of the first places to see the sunrise in the United States each morning. It sits at 1,530 feet.</li>
+    </ul>
+
+    <h3 id="rocky-header">Rocky Mountain</h3>
+    <ul>
+        <li class="rocky">Rocky Mountain National Park spans 265,769 acres</li>
+        <li class="rocky">There are 5 campgrounds, with 585 campsites.</li>
+        <li class="rocky">Rocky Mountain National Park averages around 3 million visitors a year.</li>
+        <li class="rocky">The park contains 450 miles of streams and 156 lakes.</li>
+    </ul>
+
+    <button id="highlight-button">Highlight lists</button>
 
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
     <script>
@@ -49,20 +78,33 @@
 
         $("dt").css("font-weight", "bold");
         $("dd").css("font-style", "italic");
+        $("div").css({"height": "300px", "width": "400px", "border": "5px solid black", "float": "left", "margin-left": "20px"});
 
         $(document).ready(function () {
             $("#hide-definition").click(function(event) {
                 event.preventDefault();
                 $(".invisible").toggleClass("hidden")
-            })
-        });
+            });
 
-        $(document).ready(function () {
             $("dt").click(function(event) {
                 event.preventDefault();
                 $(this).toggleClass("highlight")
-            })
-        })
+            });
+
+            $("#highlight-button").click(function() {
+                $("ul").each(function() {
+                    $(this).children().last().css("background-color", "yellow")
+                })
+            });
+
+            $("h3").click(function() {
+                $(this).next().children().css("font-weight", "bold");
+            });
+
+            $("li").click(function() {
+                $(this).parent().children().first().css("color", "blue")
+            });
+        });
 
     </script>
 
