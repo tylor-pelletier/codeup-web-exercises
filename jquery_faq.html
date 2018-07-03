@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>jQuery Faq</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         .hidden {
             display: none;
@@ -17,8 +18,12 @@
 <body>
 
     <div>
-        <h1>Would you like to sign up for our newsletter? <span id="x">X</span></h1>
-        <h2>Do you want to register for our site?</h2>
+        <h1 class="alert alert-info">Would you like to sign up for our newsletter? <span class="close float-right">X</span></h1>
+    </div>
+    <div id="register" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <h2 class="modal-content">Do you want to register for our site?<span class="close" data-dismiss="modal">Yes</span><span class="close" data-dismiss="modal">No</span></h2>
+        </div>
     </div>
 
     <h1>Top Ten Most Visited National Parks in the US</h1>
@@ -27,25 +32,25 @@
 
     <dl>
         <dt>Great Smoky Mountains</dt>
-        <dd class="invisible">Most visited national park in the US, with 11 million visitors in on year.</dd>
+        <dd class="no-show">Most visited national park in the US, with 11 million visitors in on year.</dd>
         <dt>Grand Canyon</dt>
-        <dd class="invisible">The Grand Canyon is 277 miles long being up to 1 mile deep and 18 miles wide at some points.</dd>
+        <dd class="no-show">The Grand Canyon is 277 miles long being up to 1 mile deep and 18 miles wide at some points.</dd>
         <dt>Zion</dt>
-        <dd class="invisible">Filled with rock towers, sandstone canyons, and sharp cliffs.</dd>
+        <dd class="no-show">Filled with rock towers, sandstone canyons, and sharp cliffs.</dd>
         <dt>Rocky Mountain</dt>
-        <dd class="invisible">The park contains 150 lakes and 450 miles of streams.</dd>
+        <dd class="no-show">The park contains 150 lakes and 450 miles of streams.</dd>
         <dt>Yosemite</dt>
-        <dd class="invisible">This mile-wide, 7-mile-long canyon was cut by a river and then widened and deepened by glacial action.</dd>
+        <dd class="no-show">This mile-wide, 7-mile-long canyon was cut by a river and then widened and deepened by glacial action.</dd>
         <dt>Yellowstone</dt>
-        <dd class="invisible">Yellowstone is the world's first national park.</dd>
+        <dd class="no-show">Yellowstone is the world's first national park.</dd>
         <dt>Acadia National Park</dt>
-        <dd class="invisible">Located in Maine on Mount Desert Island.</dd>
+        <dd class="no-show">Located in Maine on Mount Desert Island.</dd>
         <dt>Olympic</dt>
-        <dd class="invisible">No roads cross through the park. It contains a temperate rain forest, wildflower meadow, and rugged Pacific shore.</dd>
+        <dd class="no-show">No roads cross through the park. It contains a temperate rain forest, wildflower meadow, and rugged Pacific shore.</dd>
         <dt>Grand Teton</dt>
-        <dd class="invisible">The peaks stand nearly 7,000 feet above the Wyoming valley floor.</dd>
+        <dd class="no-show">The peaks stand nearly 7,000 feet above the Wyoming valley floor.</dd>
         <dt>Glacier</dt>
-        <dd class="invisible">The park's Going-to-the-Sun Road is considered by many to be one of the world's most spectacular drives.</dd>
+        <dd class="no-show">The park's Going-to-the-Sun Road is considered by many to be one of the world's most spectacular drives.</dd>
     </dl>
     <br>
 
@@ -78,6 +83,8 @@
     <button id="highlight-button">Highlight lists</button>
 
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script>
         "use strict";
 
@@ -87,7 +94,7 @@
         $(document).ready(function () {
             $("#hide-definition").click(function(event) {
                 event.preventDefault();
-                $(".invisible").toggleClass("hidden")
+                $(".no-show").toggleClass("hidden")
             });
 
             $("dt").click(function(event) {
@@ -110,16 +117,19 @@
                 $(this).parent().children().first().css("color", "blue")
             });
 
-            $("#x").click(function() {
+            $(".close").click(function() {
                 $(this).parent().hide()
             });
 
             $("ul").hide();
 
-            $("h2").hide().delay(8000).fadeIn(1000);
+            // $("h2").hide().delay(8000).fadeIn(1000);
+
+            setTimeout(function() {
+                $("#register").modal();
+            }, 8000);
+
         });
-
-
 
     </script>
 
