@@ -16,6 +16,11 @@
 </head>
 <body>
 
+    <div>
+        <h1>Would you like to sign up for our newsletter? <span id="x">X</span></h1>
+        <h2>Do you want to register for our site?</h2>
+    </div>
+
     <h1>Top Ten Most Visited National Parks in the US</h1>
 
     <a href="#" id="hide-definition">Toggle information</a>
@@ -78,7 +83,6 @@
 
         $("dt").css("font-weight", "bold");
         $("dd").css("font-style", "italic");
-        $("div").css({"height": "300px", "width": "400px", "border": "5px solid black", "float": "left", "margin-left": "20px"});
 
         $(document).ready(function () {
             $("#hide-definition").click(function(event) {
@@ -99,12 +103,23 @@
 
             $("h3").click(function() {
                 $(this).next().children().css("font-weight", "bold");
+                $(this).next().slideDown(300)
             });
 
             $("li").click(function() {
                 $(this).parent().children().first().css("color", "blue")
             });
+
+            $("#x").click(function() {
+                $(this).parent().hide()
+            });
+
+            $("ul").hide();
+
+            $("h2").hide().delay(8000).fadeIn(1000);
         });
+
+
 
     </script>
 
