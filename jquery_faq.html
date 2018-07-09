@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>jQuery Faq</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <style>
+
         .hidden {
             display: none;
         }
@@ -13,13 +15,28 @@
         .highlight {
             background-color: #00fff6;
         }
+
+        .left-photo {
+            background-image: url("img/streetart5.jpg");
+        }
+
+        .middle-photo {
+            background-image: url("img/streetart2.jpg");
+        }
+
+        .right-photo {
+            background-image: url("img/streetart3.jpg");
+        }
+
     </style>
+
 </head>
 <body>
 
     <div>
         <h1 class="alert alert-info">Would you like to sign up for our newsletter? <span class="close float-right">X</span></h1>
     </div>
+
     <div id="register" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <h2 class="modal-content">Do you want to register for our site?<span class="close" data-dismiss="modal">Yes</span><span class="close" data-dismiss="modal">No</span></h2>
@@ -52,6 +69,7 @@
         <dt>Glacier</dt>
         <dd class="no-show">The park's Going-to-the-Sun Road is considered by many to be one of the world's most spectacular drives.</dd>
     </dl>
+
     <br>
 
     <h1>National Park Facts</h1>
@@ -82,14 +100,32 @@
 
     <button id="highlight-button">Highlight lists</button>
 
+    <br><br><br>
+
+    <div id="button-div" class="row">
+        <button id="left-photo-button" class="col-4 text-center">Swap Left Photo</button>
+        <button id="middle-photo-button" class="col-4 text-center">Swap Middle Photo</button>
+        <button id="right-photo-button" class="col-4 text-center">Swap Right Photo</button>
+    </div>
+
+    <br>
+
+    <div id="photo-div" class="row">
+        <div id="left-photo" class="left-photo border-size col-4"></div>
+        <div id="middle-photo" class="middle-photo border-size col-4"></div>
+        <div id="right-photo" class="right-photo border-size col-4"></div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
     <script>
         "use strict";
 
         $("dt").css("font-weight", "bold");
         $("dd").css("font-style", "italic");
+        $(".border-size").css({"background-size": "500px 300px","border": "5px solid black", "height": "300px", "width": "400px","float": "left"});
 
         $(document).ready(function () {
             $("#hide-definition").click(function(event) {
@@ -128,6 +164,18 @@
             setTimeout(function() {
                 $("#register").modal();
             }, 8000);
+
+            $("#button-div").each(function () {
+                $(this).children().click(function () {
+                    if ($(this).is("#left-photo-button")) {
+                        console.log("left");
+                    } else if ($(this).is("#middle-photo-button")) {
+                        console.log("middle")
+                    } else if ($(this).is("#right-photo-button")) {
+                        console.log("right")
+                    }
+                })
+            });
 
         });
 
