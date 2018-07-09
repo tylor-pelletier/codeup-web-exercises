@@ -55,6 +55,7 @@
 })();
 
 (function () {
+    "use strict";
 
 // ================================= MATH OBJECT BONUS
 // Create an application that will calculate the total volume of a building based on user input

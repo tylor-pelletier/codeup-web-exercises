@@ -1,3 +1,5 @@
+"use strict";
+
 function showMultiplicationTable(a) {
     for (var i = 1; i <= 10; i += 1) {
         console.log(a + " x " + i + " = " + (a * i));

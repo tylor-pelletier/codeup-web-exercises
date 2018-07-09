@@ -1,3 +1,5 @@
+"use strict";
+
 var random = Math.floor(Math.random() * 50) + 1;
 console.log("Random number to skip is: " + random);
 for (var i = 1; i < 100; i++) {

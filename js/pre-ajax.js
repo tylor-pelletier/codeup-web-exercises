@@ -1,3 +1,5 @@
+"use strict";
+
 $(document).ready(function() {
     var people = [
         {
@@ -30,9 +32,9 @@ $(document).ready(function() {
     })
 
     // MY SOLUTION
-    // ADDS EXTRA LISTS FOR EACH CLICK OF THE BUTTON
 
     // $("#add-names-btn").click(function() {
+    //     $("#add-names-btn").text("");
     //     for (var i = 0; i < people.length; i += 1) {
     //         var name = people[i].name;
     //         var favColor = people[i].favColor;

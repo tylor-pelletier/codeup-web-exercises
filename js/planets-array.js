@@ -47,6 +47,8 @@
 
 })();
 
+"use strict";
+
 // BONUSES 1:
 // Write a program to toggle all characters in a string: in a given string, toggle all characters to their opposite case.
 // Special characters will not change.

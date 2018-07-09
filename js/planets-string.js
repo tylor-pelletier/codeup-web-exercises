@@ -51,6 +51,8 @@
 })();
 
 // (function () {
+//     "use strict";
+//
 //     var phoneNumbers = '210-555-2020\n230-555-2020\n512-555-3030';
 //
 //     function cleanPhoneNumbers(phoneNums) {
