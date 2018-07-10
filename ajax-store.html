@@ -51,14 +51,16 @@
 
         function refresh() {
             $("#insertProducts").text("");
-            $.get("data/inventory.json", {}).done(function (data) {
+            $.get("data/inventory.json", {
+
+            }).done(function (data) {
 
                 for (var i = 0; i < data.length; i += 1) {
                     $("#insertProducts")
                         .append("<tr class='row m-0 p-0 w-100 text-light'>" +
                             "<td class='col-3 border border-dark p-0'>" + data[i].title + "</td>" +
                             "<td class='col-3 border border-dark p-0'>" + data[i].quantity + "</td>" +
-                            "<td class='col-3 border border-dark p-0'>" + data[i].price + "</td>" +
+                            "<td class='col-3 border border-dark p-0'>$" + data[i].price + ".00</td>" +
                             "<td class='col-3 border border-dark p-0'>" + data[i].categories + "</td>" + "</tr>")
                 }
 

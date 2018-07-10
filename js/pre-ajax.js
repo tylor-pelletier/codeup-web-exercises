@@ -16,40 +16,38 @@ $(document).ready(function() {
         }
     ];
 
-    function buildList(arrObjs) {
-        var output = "";
-        output += "<ul>";
-        arrObjs.forEach(function(person) {
-            output += "<li style='color:"+ person.favColor +"'>" + person.name + "</li>";
-        });
-        output += "</ul>";
-        return output;
-    }
-    console.log(buildList(people));
-
     $("#add-names-btn").click(function() {
-        $("#names-list").html(buildList(people))
-    })
+        $("#names-list").text("");
+        for (var i = 0; i < people.length; i += 1) {
+            var name = people[i].name;
+            var favColor = people[i].favColor;
+            $("#names-list").append("<li>" + name + "</li>");
+            switch (name) {
+                case people[0].name:
+                    $("li").first().css("color", favColor);
+                    break;
+                case people[1].name:
+                    $("li").first().next().css("color", favColor);
+                    break;
+                case people[2].name:
+                    $("li").last().css("color", favColor);
+                    break;
+            }
+        }
+     })
 
-    // MY SOLUTION
-
+    // function buildList(arrObjs) {
+    //     var output = "";
+    //     output += "<ul>";
+    //     arrObjs.forEach(function(person) {
+    //         output += "<li style='color:"+ person.favColor +"'>" + person.name + "</li>";
+    //     });
+    //     output += "</ul>";
+    //     return output;
+    // }
+    // console.log(buildList(people));
+    //
     // $("#add-names-btn").click(function() {
-    //     $("#add-names-btn").text("");
-    //     for (var i = 0; i < people.length; i += 1) {
-    //         var name = people[i].name;
-    //         var favColor = people[i].favColor;
-    //         $("#names-list").append("<li>" + name + "</li>");
-    //         switch (name) {
-    //             case people[0].name:
-    //                 $("li").first().css("color", favColor);
-    //                 break;
-    //             case people[1].name:
-    //                 $("li").first().next().css("color", favColor);
-    //                 break;
-    //             case people[2].name:
-    //                 $("li").last().css("color", favColor);
-    //                 break;
-    //         }
-    //     }
-    //  })
+    //     $("#names-list").html(buildList(people))
+    // })
 });
