@@ -6,13 +6,15 @@
     <title>AJAX Blog</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body>
+<body class="bg-dark text-center">
 
-    <div id="posts"></div>
+    <div id="posts" class='text-center container w-50'></div>
 
     <br>
 
-    <button id="blog-refresh-btn">Refresh Blog</button>
+    <button id="blog-refresh-btn" class="btn btn-primary">Refresh Blog</button>
+
+    <br><br>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -27,11 +29,10 @@
                     type: "GET"
                 }).done(function (data) {
                     console.log(data);
-                    for (var i = 0; i < data.length; i += 1)
-                        $("#posts").append("<h1>" + data[i].title + "</h1>")
-                            .append("<p>" + data[i].content + "</p>")
-                            .append("<div>Categories: " + data[i].categories + "</div>")
-                            .append("<div>Date: " + data[i].date + "</div>")
+                    for (var i = 0; i < data.length; i += 1) {
+                        $("#posts")
+                            .append("<div class='row justify-content-center'>" + "<h1 class='text-primary'>" + data[i].title + "</h1>" + "<p class='text-light'>" + data[i].content + "</p>" + "<div class='text-secondary'>Categories: " + data[i].categories + "<br> Date: " + data[i].date + "</div>" + "</div>" + "<br>" + "<hr class='bg-light'>")
+                    }
                 })
             }
             blogRefresh();
@@ -42,7 +43,6 @@
 
         })();
     </script>
-
 
 </body>
 </html>
