@@ -4,11 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Weather Map</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
+        body {
+            background-color: #0087FF;
+            text-align: center;
+        }
+        table {
+            background-color: #2E2E2E;
+            border: 3px solid grey;
+            width: 100%;
+        }
+        td {
+            text-align: center;
+            border: 3px solid grey;
+            color: white;
+        }
+        strong {
+            color: #0087FF;
+        }
 
+        #map-canvas {
+            width: 100%;
+            height: 750px;
+        }
+
+        #pac-input {
+            background-color: #fff;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            margin-left: 12px;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
+            width: 400px;
+        }
+
+        #pac-input:focus {
+            border-color: #4d90fe;
+        }
+        .controls {
+            margin-top: 10px;
+            border: 1px solid transparent;
+            border-radius: 2px 0 0 2px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            height: 32px;
+            outline: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        #origin-input,
+        #destination-input {
+            background-color: #fff;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            margin-left: 12px;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
+            width: 200px;
+        }
+
+        #origin-input:focus,
+        #destination-input:focus {
+            border-color: #4d90fe;
+        }
+
+        #mode-selector {
+            color: #fff;
+            background-color: #4d90fe;
+            margin-left: 12px;
+            padding: 5px 11px 0px 11px;
+        }
+
+        #mode-selector label {
+            font-family: Roboto;
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+        #lat-lng-input-boxes {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+
+<nav class="navbar navbar-expand-lg navbar-primary bg-dark">
+    <a class="navbar-brand" href="#">WeatherWorld</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Cities</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Favorites
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Hometown</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Work</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Vacation</a>
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search WeatherWorld" aria-label="Search">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
 
 <h1>Weather Application</h1>
 
@@ -20,34 +135,271 @@
     </tr>
 </table>
 
+<div id="lat-lng-input-boxes">
+    <input id="lat-input" type="text" placeholder="latitude" class="controls">
+    <input id="lon-input" type="text" placeholder="longitude" class="controls">
+    <button id="lat-lng-btn" class="controls">Search</button>
+</div>
+
+<br>
+
+<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+<input id="origin-input" class="controls" type="text"
+       placeholder="Enter an origin location">
+
+<input id="destination-input" class="controls" type="text"
+       placeholder="Enter a destination location">
+
+<div id="mode-selector" class="controls">
+    <input type="radio" name="type" id="changemode-walking" checked="checked">
+    <label for="changemode-walking">Walking</label>
+
+    <input type="radio" name="type" id="changemode-transit">
+    <label for="changemode-transit">Transit</label>
+
+    <input type="radio" name="type" id="changemode-driving">
+    <label for="changemode-driving">Driving</label>
+</div>
+
+<div id="map-canvas"></div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<!--<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <script>
-    (function () {
-        "use strict";
+    "use strict";
 
-        function weather() {
-            $.get("http://api.openweathermap.org/data/2.5/weather", {
-                APPID: "056afc3644b4bd9e635efbb4cdec0ce0",
-                id: 4726206,
-                units: "imperial"
-            }).done(function (data) {
-                console.log(data);
-                $("#table-header").append(data.name);
-                $("#weather-table-row")
-                    .append("<td>" +
-                        "<h2>" + data.main.temp_max + "˚/ " + data.main.temp_min + "˚" + "</h2>" +
-                        "<p><strong>Clouds: </strong>" + data.weather["0"].description + "</p>" +
-                        "<p><strong>Humidity: </strong>" + data.main.humidity + "</p>" +
-                        "<p><strong>Wind: </strong>" + data.wind.speed + "</p>" +
-                        "<p><strong>Pressure: </strong>" + data.main.pressure + "</p>" +
-                        "</td>")
-            });
+    function initAutocomplete(latitude, longitude) {
+
+        // Set our map options
+        var myLatlng = new google.maps.LatLng(29.426791, -98.489602);
+        if (latitude && longitude) {
+            myLatlng = new google.maps.LatLng(latitude, longitude)
         }
-        weather();
-    })();
+        var mapOptions = {
+            zoom: 6,
+            center: myLatlng
+        };
+
+        // Render the map
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+            searchBox.setBounds(map.getBounds());
+        });
+
+        searchBox.addListener('places_changed', function search() {
+            var places = searchBox.getPlaces();
+
+            if (places.length == 0) {
+                return;
+            }
+            // For each place, get the icon, name and location.
+            var bounds = new google.maps.LatLngBounds();
+            places.forEach(function (place) {
+                if (!place.geometry) {
+                    console.log("Returned place contains no geometry");
+                    return;
+                }
+
+                // Create a marker for each place.
+                markers.push(new google.maps.Marker({
+                    map: map,
+                    draggable: true,
+                    title: myLatlng,
+                    animation: google.maps.Animation.DROP,
+                    position: place.geometry.location
+                }));
+
+                if (place.geometry.viewport) {
+                    // Only geocodes have viewport.
+                    bounds.union(place.geometry.viewport);
+                } else {
+                    bounds.extend(place.geometry.location);
+                }
+            });
+            map.fitBounds(bounds);
+        });
+
+        // Multiple markers location, latitude, and longitude
+        var markers = [
+            new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                draggable: true,
+                title: myLatlng,
+                animation: google.maps.Animation.DROP
+            })
+        ];
+
+        var infoWindow = new google.maps.InfoWindow(), marker, i;
+
+        new AutocompleteDirectionsHandler(map);
+    }
+
+    function AutocompleteDirectionsHandler(map) {
+        this.map = map;
+        this.originPlaceId = null;
+        this.destinationPlaceId = null;
+        this.travelMode = 'WALKING';
+        var originInput = document.getElementById('origin-input');
+        var destinationInput = document.getElementById('destination-input');
+        var modeSelector = document.getElementById('mode-selector');
+        this.directionsService = new google.maps.DirectionsService;
+        this.directionsDisplay = new google.maps.DirectionsRenderer;
+        this.directionsDisplay.setMap(map);
+
+        var originAutocomplete = new google.maps.places.Autocomplete(
+            originInput, {placeIdOnly: true});
+        var destinationAutocomplete = new google.maps.places.Autocomplete(
+            destinationInput, {placeIdOnly: true});
+
+        this.setupClickListener('changemode-walking', 'WALKING');
+        this.setupClickListener('changemode-transit', 'TRANSIT');
+        this.setupClickListener('changemode-driving', 'DRIVING');
+
+        this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
+        this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+
+        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
+        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
+        this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+    }
+
+    // Sets a listener on a radio button to change the filter type on Places
+    // Autocomplete.
+    AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
+        var radioButton = document.getElementById(id);
+        var me = this;
+        radioButton.addEventListener('click', function() {
+            me.travelMode = mode;
+            me.route();
+        });
+    };
+
+    AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
+        var me = this;
+        autocomplete.bindTo('bounds', this.map);
+        autocomplete.addListener('place_changed', function() {
+            var place = autocomplete.getPlace();
+            if (!place.place_id) {
+                window.alert("Please select an option from the dropdown list.");
+                return;
+            }
+            if (mode === 'ORIG') {
+                me.originPlaceId = place.place_id;
+            } else {
+                me.destinationPlaceId = place.place_id;
+            }
+            me.route();
+        });
+
+    };
+
+    AutocompleteDirectionsHandler.prototype.route = function() {
+        if (!this.originPlaceId || !this.destinationPlaceId) {
+            return;
+        }
+        var me = this;
+
+        this.directionsService.route({
+            origin: {'placeId': this.originPlaceId},
+            destination: {'placeId': this.destinationPlaceId},
+            travelMode: this.travelMode
+        }, function(response, status) {
+            if (status === 'OK') {
+                me.directionsDisplay.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+    };
+
 </script>
 
+<script>
+    "use strict";
+
+    (function () {
+
+        function weather(latitude, longitude) {
+            $.get("http://api.openweathermap.org/data/2.5/forecast", {
+                APPID: "056afc3644b4bd9e635efbb4cdec0ce0",
+                lat: latitude,
+                lon: longitude,
+                units: "imperial"
+            }).done(function(data) {
+                $("#table-header").text("");
+                $("#weather-table-row").text("");
+                console.log(data);
+                $("#table-header").append(data.city.name + ", " + data.city.country);
+
+                function weatherImage() {
+                    switch (data.list[2].weather["0"].icon) {
+                        case "01d":
+                            return "<img src='http://openweathermap.org/img/w/01d.png'>";
+                        case "02d":
+                            return "<img src='http://openweathermap.org/img/w/02d.png'>";
+                        case "03d":
+                            return "<img src='http://openweathermap.org/img/w/03d.png'>";
+                        case "04d":
+                            return "<img src='http://openweathermap.org/img/w/04d.png'>";
+                        case "09d":
+                            return "<img src='http://openweathermap.org/img/w/09d.png'>";
+                        case "10d":
+                            return "<img src='http://openweathermap.org/img/w/10d.png'>";
+                        case "11d":
+                            return "<img src='http://openweathermap.org/img/w/11d.png'>";
+                        case "12d":
+                            return "<img src='http://openweathermap.org/img/w/12d.png'>";
+                        case "01n":
+                            return "<img src='http://openweathermap.org/img/w/01n.png'>";
+                        case "02n":
+                            return "<img src='http://openweathermap.org/img/w/02n.png'>";
+                        case "03n":
+                            return "<img src='http://openweathermap.org/img/w/03n.png'>";
+                        case "04n":
+                            return "<img src='http://openweathermap.org/img/w/04n.png'>";
+                        case "09n":
+                            return "<img src='http://openweathermap.org/img/w/09n.png'>";
+                        case "10n":
+                            return "<img src='http://openweathermap.org/img/w/10n.png'>";
+                        case "11n":
+                            return "<img src='http://openweathermap.org/img/w/11n.png'>";
+                        case "12n":
+                            return "<img src='http://openweathermap.org/img/w/12n.png'>";
+                    }
+                }
+
+                for (var i = 0; i < data.list.length / 2; i += 8) {
+                    $("#weather-table-row")
+                        .append("<td>" +
+                            "<h2>" + parseInt(data.list[i].main.temp_max) + "˚/ " + parseInt(data.list[i].main.temp_min) + "˚" + "</h2>" +
+                            "<p>" + weatherImage() + "</p>" +
+                            "<p><strong>Clouds: </strong>" + data.list[i].weather["0"].description + "</p>" +
+                            "<p><strong>Humidity: </strong>" + data.list[i].main.humidity + "%" + "</p>" +
+                            "<p><strong>Wind: </strong>" + data.list[i].wind.speed + "</p>" +
+                            "<p><strong>Pressure: </strong>" + data.list[i].main.pressure + "</p>" +
+                            "</td>");
+                }
+            });
+        }
+        weather(29.426791, -98.489602); // Start at San Antonio
+
+        $("#lat-lng-btn").click(function() {
+            var latitude = $("#lat-input")["0"].value;
+            var longitude = $("#lon-input")["0"].value;
+            weather(latitude, longitude);
+            initAutocomplete(latitude, longitude);
+        })
+
+    })();
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxIPbNd4ljI6NdSyP5ugk4XoKDzw2VEZM&libraries=places&callback=initAutocomplete"></script>
 </body>
 </html>
