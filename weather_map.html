@@ -32,6 +32,21 @@
             height: 600px;
         }
 
+        #pac-input {
+            background-color: #fff;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            margin-left: 12px;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
+            width: 400px;
+        }
+
+        #pac-input:focus {
+            border-color: #4d90fe;
+        }
+
         .controls {
             margin-top: 10px;
             border: 1px solid transparent;
@@ -75,11 +90,11 @@
                     Favorites
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Hometown</a>
+                    <a id="hometown" class="dropdown-item" href="#">Hometown</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Work</a>
+                    <a id="school" class="dropdown-item" href="#">School</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Vacation</a>
+                    <a id="vacation" class="dropdown-item" href="#">Vacation</a>
                 </div>
             </li>
         </ul>
@@ -90,23 +105,31 @@
     </div>
 </nav>
 
-<h1>Weather Application</h1>
+<h1 id="five-day">Weather Application</h1>
 
 <h2 id="table-header"></h2>
 
 <table>
-    <tr id="weather-table-row">
-
-    </tr>
+    <tr id="weather-table-row"></tr>
 </table>
+<table>
+    <tr id="weather-table-row2"></tr>
+</table>
+
+<br>
+
+<button id="five-day-forcast-btn" class="btn btn-outline-light">5 Day Forcast</button>
+<button id="three-day-forcast-btn" class="btn btn-outline-light">3 Day Forcast</button>
+
+<br><br>
 
 <div id="lat-lng-input-boxes">
     <input id="lat-input" type="text" placeholder="latitude" class="controls">
     <input id="lon-input" type="text" placeholder="longitude" class="controls">
-    <button id="lat-lng-btn" class="controls">Search</button>
+    <button id="lat-lng-btn" class="btn btn-secondary">Search</button>
 </div>
 
-<br>
+<input id="pac-input" class="controls" type="text" placeholder="Search Box">
 
 <div id="map-canvas"></div>
 
@@ -149,12 +172,53 @@
             weather(markerLocation.lat(), markerLocation.lng());
 
         });
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+            searchBox.setBounds(map.getBounds());
+        });
+
+        searchBox.addListener('places_changed', function() {
+
+            // Put the latitude and longitude data in varables to call through the weather function
+            var searchLat = searchBox.gm_accessors_.places.jd.searchBoxPlaces["0"].geometry.location.lat();
+            var searchLng = searchBox.gm_accessors_.places.jd.searchBoxPlaces["0"].geometry.location.lng();
+
+            weather(searchLat, searchLng);
+
+            var places = searchBox.getPlaces();
+
+            if (places.length == 0) {
+                return;
+            }
+
+            // For each place, get the icon, name and location.
+            var bounds = new google.maps.LatLngBounds();
+            places.forEach(function(place) {
+                if (!place.geometry) {
+                    console.log("Returned place contains no geometry");
+                    return;
+                }
+                if (place.geometry.viewport) {
+                    // Only geocodes have viewport.
+                    bounds.union(place.geometry.viewport);
+                } else {
+                    bounds.extend(place.geometry.location);
+                }
+            });
+            map.fitBounds(bounds);
+        });
     }
 
     // Creating the weather API
     function weather(latitude, longitude) {
         $.get("http://api.openweathermap.org/data/2.5/forecast", {
-            APPID: "056afc3644b4bd9e635efbb4cdec0ce0",
+            APPID: "7b65bae29a0e4c30104c93b9ed916365",
             lat: latitude,
             lon: longitude,
             units: "imperial"
@@ -163,88 +227,118 @@
             // Clear the data so new data can take it's place
             $("#table-header").text("");
             $("#weather-table-row").text("");
+            $("#weather-table-row2").text("");
 
             // Show the data to look through the information
             console.log(data);
 
             // Call the header to reflect the city name and country that is in the data
             $("#table-header").append(data.city.name + ", " + data.city.country);
+
             // Finding max temp / min temp for the entire day
             var dayOneMaxTempArr = [];
             var dayTwoMaxTempArr = [];
             var dayThreeMaxTempArr = [];
-            var maxTempArr = [];
+            var dayFourMaxTempArr = [];
+            var dayFiveMaxTempArr = [];
+            var fiveDayMaxTempArr = [];
             var dayOneMinTempArr = [];
             var dayTwoMinTempArr = [];
             var dayThreeMinTempArr = [];
+            var dayFourMinTempArr = [];
+            var dayFiveMinTempArr = [];
+            var fiveDayMinTempArr = [];
+
+            // Loop through all the days adding each day's max and min temp to their respective arrays
+            for (var i = 0; i < data.list.length; i += 1) {
+                if (data.list[i].dt_txt.split(" ")["0"] === data.list["0"].dt_txt.split(" ")["0"]) {
+                    dayOneMaxTempArr.push(data.list[i].main.temp_max);
+                    dayOneMinTempArr.push(data.list[i].main.temp_min);
+                } else if (data.list[i].dt_txt.split(" ")["0"] === data.list[8].dt_txt.split(" ")["0"]) {
+                    dayTwoMaxTempArr.push(data.list[i].main.temp_max);
+                    dayTwoMinTempArr.push(data.list[i].main.temp_min);
+                } else if (data.list[i].dt_txt.split(" ")["0"] === data.list[16].dt_txt.split(" ")["0"]) {
+                    dayThreeMaxTempArr.push(data.list[i].main.temp_max);
+                    dayThreeMinTempArr.push(data.list[i].main.temp_min);
+                } else if (data.list[i].dt_txt.split(" ")["0"] === data.list[24].dt_txt.split(" ")["0"]) {
+                    dayFourMaxTempArr.push(data.list[i].main.temp_max);
+                    dayFourMinTempArr.push(data.list[i].main.temp_min);
+                } else if (data.list[i].dt_txt.split(" ")["0"] === data.list[32].dt_txt.split(" ")["0"]) {
+                    dayFiveMaxTempArr.push(data.list[i].main.temp_max);
+                    dayFiveMinTempArr.push(data.list[i].main.temp_min);
+                }
+            }
+            fiveDayMaxTempArr.push(dayOneMaxTempArr, dayTwoMaxTempArr, dayThreeMaxTempArr, dayFourMaxTempArr, dayFiveMaxTempArr);
+            console.log(fiveDayMaxTempArr);
+            fiveDayMinTempArr.push(dayOneMinTempArr, dayTwoMinTempArr, dayThreeMinTempArr, dayFourMinTempArr, dayFiveMinTempArr);
+            console.log(fiveDayMinTempArr);
+
+            var maxTempArr = [];
             var minTempArr = [];
 
-            // Grab the date of the weather data
-            console.log(data.list["0"].dt_txt.split(" ")["0"]);
-
-            // Loop through all the days adding each day's max temp to the max temp array for that day
-            for (var i = 0; i < data.list.length; i += 1) {
-                if (i < 24 && data.list[i].dt_txt.split(" ")["0"] === data.list["0"].dt_txt.split(" ")["0"]) {
-                    dayOneMaxTempArr.push(data.list[i].main.temp_max);
-                } else if (i < 24 && data.list[i].dt_txt.split(" ")["0"] === data.list[8].dt_txt.split(" ")["0"]) {
-                    dayTwoMaxTempArr.push(data.list[i].main.temp_max);
-                } else if (i < 24 && data.list[i].dt_txt.split(" ")["0"] === data.list[16].dt_txt.split(" ")["0"]) {
-                    dayThreeMaxTempArr.push(data.list[i].main.temp_max);
-                }
-
-                // Loop through all the days adding each day's min temp to the main temp array for that day
-                if (i < 24 && data.list[i].dt_txt.split(" ")["0"] === data.list["0"].dt_txt.split(" ")["0"]) {
-                    dayOneMinTempArr.push(data.list[i].main.temp_min);
-                } else if (i < 24 && data.list[i].dt_txt.split(" ")["0"] === data.list[8].dt_txt.split(" ")["0"]) {
-                    dayTwoMinTempArr.push(data.list[i].main.temp_min);
-                } else if (i < 24 && data.list[i].dt_txt.split(" ")["0"] === data.list[16].dt_txt.split(" ")["0"]) {
-                    dayThreeMinTempArr.push(data.list[i].main.temp_min);
-                }
-            }
-            maxTempArr.push(dayOneMaxTempArr, dayTwoMaxTempArr, dayThreeMaxTempArr);
-            console.log(maxTempArr);
-            minTempArr.push(dayOneMinTempArr, dayTwoMinTempArr, dayThreeMinTempArr);
-            console.log(minTempArr);
-            function maxTemp(maxTempArr) {
-                return maxTempArr.map(function(subArray) {
-                    return console.log(parseInt(Math.max.apply(null, subArray)));
+            function maxTemp(arr) {
+                return arr.map(function(subArray) {
+                    return maxTempArr.push(Math.round(Math.max.apply(null, subArray)));
                 });
             }
-            maxTemp(maxTempArr);
-            // console.log(largestTemp(dayOneMaxTempArr));
-            // console.log(largestTemp(dayTwoMaxTempArr));
-            // console.log(largestTemp(dayThreeMaxTempArr));
-            console.log(dayOneMaxTempArr);
-            console.log(dayTwoMaxTempArr);
-            console.log(dayThreeMaxTempArr);
-            function minTemp(minTempArr) {
-                return minTempArr.map(function(subArray) {
-                    return console.log(parseInt(Math.max.apply(null, subArray)));
+            maxTemp(fiveDayMaxTempArr);
+
+            function minTemp(arr) {
+                return arr.map(function(subArray) {
+                    return minTempArr.push(Math.round(Math.min.apply(null, subArray)));
                 });
             }
-            minTemp(minTempArr);
-            // console.log(largestTemp(dayOneMinTempArr));
-            // console.log(largestTemp(dayTwoMinTempArr));
-            // console.log(largestTemp(dayThreeMinTempArr));
-            console.log(dayOneMinTempArr);
-            console.log(dayTwoMinTempArr);
-            console.log(dayThreeMinTempArr);
-            for (var i = 0; i < data.list.length / 2; i += 8) {
+            minTemp(fiveDayMinTempArr);
+
+            var day = 0;
+            for (var i = 0; i < 3; i += 1) {
                 $("#weather-table-row")
                     .append("<td>" +
-                        "<h5 class='text-primary'>" + data.list[i].dt_txt.split(" ")["0"] + "</h5>" +
-                        "<h2>" + parseInt(data.list[i].main.temp_max) + "˚/ " + parseInt(data.list[i].main.temp_min) + "˚" + "</h2>" +
-                        "<p>" + "<img src='http://openweathermap.org/img/w/" + data.list[i].weather["0"].icon + ".png'" + "</p>" +
-                        "<p><strong>Clouds: </strong>" + data.list[i].weather["0"].description + "</p>" +
-                        "<p><strong>Humidity: </strong>" + data.list[i].main.humidity + "%" + "</p>" +
-                        "<p><strong>Wind: </strong>" + data.list[i].wind.speed + "</p>" +
-                        "<p><strong>Pressure: </strong>" + data.list[i].main.pressure + "</p>" +
+                        "<h5 class='text-primary'>" + data.list[day].dt_txt.split(" ")["0"] + "</h5>" +
+                        "<h2>" + maxTempArr[i] + "˚/ " + minTempArr[i] + "˚" + "</h2>" +
+                        "<p>" + "<img src='http://openweathermap.org/img/w/" + data.list[day].weather["0"].icon + ".png'" + "</p>" +
+                        "<p><strong>Clouds: </strong>" + data.list[day].weather["0"].description + "</p>" +
+                        "<p><strong>Humidity: </strong>" + data.list[day].main.humidity + "%" + "</p>" +
+                        "<p><strong>Wind: </strong>" + data.list[day].wind.speed + "</p>" +
+                        "<p><strong>Pressure: </strong>" + data.list[day].main.pressure + "</p>" +
                         "</td>");
+                day += 8;
+            }
+            var days = 0;
+            for (var i = 0; i < 5; i += 1) {
+                $("#weather-table-row2")
+                    .append("<td>" +
+                        "<h5 class='text-primary'>" + data.list[days].dt_txt.split(" ")["0"] + "</h5>" +
+                        "<h2>" + maxTempArr[i] + "˚/ " + minTempArr[i] + "˚" + "</h2>" +
+                        "<p>" + "<img src='http://openweathermap.org/img/w/" + data.list[days].weather["0"].icon + ".png'" + "</p>" +
+                        "<p><strong>Clouds: </strong>" + data.list[days].weather["0"].description + "</p>" +
+                        "<p><strong>Humidity: </strong>" + data.list[days].main.humidity + "%" + "</p>" +
+                        "<p><strong>Wind: </strong>" + data.list[days].wind.speed + "</p>" +
+                        "<p><strong>Pressure: </strong>" + data.list[days].main.pressure + "</p>" +
+                        "</td>");
+                days += 8;
             }
         });
     }
     // Start the map and weather at San Antonio
     weather(29.426791, -98.489602);
+
+    $("#weather-table-row2").hide();
+    $("#three-day-forcast-btn").hide();
+
+    $("#five-day-forcast-btn").click(function () {
+        $("#five-day-forcast-btn").hide();
+        $("#three-day-forcast-btn").show();
+        $("#weather-table-row").toggle();
+        $("#weather-table-row2").fadeIn()
+    });
+
+    $("#three-day-forcast-btn").click(function () {
+        $("#three-day-forcast-btn").hide();
+        $("#five-day-forcast-btn").show();
+        $("#weather-table-row2").toggle();
+        $("#weather-table-row").fadeIn();
+    });
 
     // Create a button to change the weather info and map location to the latitude and longitude entered by the user
     $("#lat-lng-btn").click(function() {
@@ -252,6 +346,21 @@
         var longitude = $("#lon-input")["0"].value;
         weather(latitude, longitude);
         initAutocomplete(latitude, longitude);
+    });
+
+    $("#hometown").click(function() {
+        weather(47.24, -68.5895);
+        initAutocomplete(47.2587, -68.5895)
+    });
+
+    $("#school").click(function() {
+        weather(29.4268, -98.4896);
+        initAutocomplete(29.4268, -98.4896)
+    });
+
+    $("#vacation").click(function() {
+        weather(21.3069, -157.8583);
+        initAutocomplete(21.3069, -157.8583)
     })
 
 </script>
