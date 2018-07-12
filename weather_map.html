@@ -190,6 +190,7 @@
             var searchLng = searchBox.gm_accessors_.places.jd.searchBoxPlaces["0"].geometry.location.lng();
 
             weather(searchLat, searchLng);
+            // initAutocomplete(searchLat, searchLng);
 
             var places = searchBox.getPlaces();
 
@@ -251,23 +252,30 @@
 
             // Loop through all the days adding each day's max and min temp to their respective arrays
             for (var i = 0; i < data.list.length; i += 1) {
-                if (data.list[i].dt_txt.split(" ")["0"] === data.list["0"].dt_txt.split(" ")["0"]) {
-                    dayOneMaxTempArr.push(data.list[i].main.temp_max);
-                    dayOneMinTempArr.push(data.list[i].main.temp_min);
-                } else if (data.list[i].dt_txt.split(" ")["0"] === data.list[8].dt_txt.split(" ")["0"]) {
-                    dayTwoMaxTempArr.push(data.list[i].main.temp_max);
-                    dayTwoMinTempArr.push(data.list[i].main.temp_min);
-                } else if (data.list[i].dt_txt.split(" ")["0"] === data.list[16].dt_txt.split(" ")["0"]) {
-                    dayThreeMaxTempArr.push(data.list[i].main.temp_max);
-                    dayThreeMinTempArr.push(data.list[i].main.temp_min);
-                } else if (data.list[i].dt_txt.split(" ")["0"] === data.list[24].dt_txt.split(" ")["0"]) {
-                    dayFourMaxTempArr.push(data.list[i].main.temp_max);
-                    dayFourMinTempArr.push(data.list[i].main.temp_min);
-                } else if (data.list[i].dt_txt.split(" ")["0"] === data.list[32].dt_txt.split(" ")["0"]) {
-                    dayFiveMaxTempArr.push(data.list[i].main.temp_max);
-                    dayFiveMinTempArr.push(data.list[i].main.temp_min);
+                switch (data.list[i].dt_txt.split(" ")["0"]) {
+                    case data.list["0"].dt_txt.split(" ")["0"]:
+                        dayOneMaxTempArr.push(data.list[i].main.temp_max);
+                        dayOneMinTempArr.push(data.list[i].main.temp_min);
+                        break;
+                    case data.list[8].dt_txt.split(" ")["0"]:
+                        dayTwoMaxTempArr.push(data.list[i].main.temp_max);
+                        dayTwoMinTempArr.push(data.list[i].main.temp_min);
+                        break;
+                    case data.list[16].dt_txt.split(" ")["0"]:
+                        dayThreeMaxTempArr.push(data.list[i].main.temp_max);
+                        dayThreeMinTempArr.push(data.list[i].main.temp_min);
+                        break;
+                    case data.list[24].dt_txt.split(" ")["0"]:
+                        dayFourMaxTempArr.push(data.list[i].main.temp_max);
+                        dayFourMinTempArr.push(data.list[i].main.temp_min);
+                        break;
+                    case data.list[32].dt_txt.split(" ")["0"]:
+                        dayFiveMaxTempArr.push(data.list[i].main.temp_max);
+                        dayFiveMinTempArr.push(data.list[i].main.temp_min);
+                        break;
                 }
             }
+            // Push each days array to the week array
             fiveDayMaxTempArr.push(dayOneMaxTempArr, dayTwoMaxTempArr, dayThreeMaxTempArr, dayFourMaxTempArr, dayFiveMaxTempArr);
             console.log(fiveDayMaxTempArr);
             fiveDayMinTempArr.push(dayOneMinTempArr, dayTwoMinTempArr, dayThreeMinTempArr, dayFourMinTempArr, dayFiveMinTempArr);
@@ -276,6 +284,7 @@
             var maxTempArr = [];
             var minTempArr = [];
 
+            // Go through each days array finding the max and min of each and round that temperature
             function maxTemp(arr) {
                 return arr.map(function(subArray) {
                     return maxTempArr.push(Math.round(Math.max.apply(null, subArray)));
@@ -290,6 +299,8 @@
             }
             minTemp(fiveDayMinTempArr);
 
+            // Put all the data out in a table for each day
+            // 3 day forcast
             var day = 0;
             for (var i = 0; i < 3; i += 1) {
                 $("#weather-table-row")
@@ -304,6 +315,7 @@
                         "</td>");
                 day += 8;
             }
+            // 5 day forcast
             var days = 0;
             for (var i = 0; i < 5; i += 1) {
                 $("#weather-table-row2")
@@ -323,9 +335,11 @@
     // Start the map and weather at San Antonio
     weather(29.426791, -98.489602);
 
+    // Hide the 5 day forcast and 3 day button initially
     $("#weather-table-row2").hide();
     $("#three-day-forcast-btn").hide();
 
+    // When the 5 day forcast button is clicked, hide the 3 day forcast, 5 day button and show the 5 day forcast and 3 day button
     $("#five-day-forcast-btn").click(function () {
         $("#five-day-forcast-btn").hide();
         $("#three-day-forcast-btn").show();
@@ -333,6 +347,7 @@
         $("#weather-table-row2").fadeIn()
     });
 
+    // When the 3 day forcast button is clicked, hide the 5 day forcast, 3 day button and show the 3 day forcast and 5 day button
     $("#three-day-forcast-btn").click(function () {
         $("#three-day-forcast-btn").hide();
         $("#five-day-forcast-btn").show();
@@ -348,6 +363,7 @@
         initAutocomplete(latitude, longitude);
     });
 
+    // Put functionality to the dropdown menu links
     $("#hometown").click(function() {
         weather(47.24, -68.5895);
         initAutocomplete(47.2587, -68.5895)
