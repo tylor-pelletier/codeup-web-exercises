@@ -1,15 +1,30 @@
 "use strict";
 
+// 1
 function wait(number) {
-    let myPromise = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         setTimeout(() => {
-            if (!isNaN(number)) {
-                resolve(console.log("You'll see this after " + (number / 1000) + " seconds"));
+            if (number === 1000) {
+                resolve("You'll see this after " + (number / 1000) + " second");
+            } else if (number > 1000 || (number < 1000 && number >= 0)) {
+                resolve("You'll see this after " + (number / 1000) + " seconds");
             } else {
                 reject("Error");
             }
         }, number)
-    })
+    });
 }
-wait(1000);
-wait(3000);
+const timeToWait = wait(1000);
+// const timeToWait = wait(3000);
+console.log(timeToWait);
+timeToWait.then(data => console.log("Promise resolved!", data));
+timeToWait.catch(error => console.log("Promise rejected!", error));
+
+// 2
+function lastPushToGithub(username) {
+    return fetch('https://api.github.com/users/' + username + '/events', {headers: {'Authorization': 'token 7f1ab21386dbf65f9e4b4533079c4479cde471ef'}})
+}
+lastPushToGithub('tylor-pelletier')
+    .then(response => response.json())
+    .then(data => console.log(data["0"].created_at))
+    .catch(error => console.error(error));
