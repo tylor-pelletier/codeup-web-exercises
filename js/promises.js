@@ -1,7 +1,7 @@
 "use strict";
 
 // 1
-function wait(number) {
+const wait = (number) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (number === 1000) {
@@ -13,7 +13,7 @@ function wait(number) {
             }
         }, number)
     });
-}
+};
 const timeToWait = wait(1000);
 // const timeToWait = wait(3000);
 console.log(timeToWait);
@@ -21,10 +21,11 @@ timeToWait.then(data => console.log("Promise resolved!", data));
 timeToWait.catch(error => console.log("Promise rejected!", error));
 
 // 2
-function lastPushToGithub(username) {
+const lastPushToGithub = (username) => {
     return fetch('https://api.github.com/users/' + username + '/events', {headers: {'Authorization': 'token 7f1ab21386dbf65f9e4b4533079c4479cde471ef'}})
-}
+};
 lastPushToGithub('tylor-pelletier')
     .then(response => response.json())
+    .then(events => events.filter(event => event.type === "PushEvent"))
     .then(data => console.log(data["0"].created_at))
     .catch(error => console.error(error));
